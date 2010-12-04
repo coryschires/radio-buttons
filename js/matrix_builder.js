@@ -67,70 +67,36 @@ var matrix_builder = function(wrapper_div) {
     };
     
     matrix.line = function(x1, y1, x2, y2) {
-        var self = {};
+        var initial_rise = (y1 - y2) * -1;
+        var initial_run = (x1 - x2) * -1;
         
-        var reduce_fraction = function(rise, run) {
-        
-            var divisor = 2
-            // while the devisor is smaller than both the rise and the run
-
-                // if both rise and run divide evenly into the devisor
-                if (rise % devisor === 0 && run % devisor === 0) {
-                    rise = rise / devisor
-                    run = run / devisor
-                } else {
-                    // else increment devisor and restart
-                    divide
-                }
-
-        };
-        
-
         var calculate_slope = function() {
-            // x1, y1, x2, y2
-            
-            // 1) determine if slope is positive or negative (e.g. moving left to right, postive if y1 > y2)
-            // if slope positive, the rise should be a negative value
-            // if slope negative, the rise should be a positive value
+            var rise = initial_rise
+            var run = initial_run;
 
-            if (y1 > y2) {
-                // slope is positive so rise should be negiative
-            } else {
-                // slope is negative so rise should be positive
+            var divisor = 2
+
+            while (divisor < Math.abs(initial_rise) && divisor < Math.abs(initial_run)) {
+                if (rise % divisor === 0 && run % divisor === 0) {
+                    rise = rise / divisor
+                    run = run / divisor
+                } else {
+                    divisor += 1;
+                }
             }
-
-            // 2) determine if slope is moving forward or backward (e.g. moving left to right, forward if x1 < x2)            
-            // if slope moving forward, the run should be a positive value
-            // if slope moving backward, the run should be a negative value
-
-            if (x1 < x2) {
-                // slope is moving forward so run should be positive
-            } else {
-                // slope is moving backward so run should be negative
-            }
-
-            var rise = (y1 - y2) * -1;
-            var run = (x1 - x2) * -1;
-            console.log("rise: " + rise);
-            console.log("run: " + run);
-
-            return {
-                rise: (y1 - y2) * -1,
-                run: (x1 - x2) * -1
-            }
+            return { rise: rise, run: run }
         };
+        
+        console.log(calculate_slope());
         
         var plot_line = function(x, y, slope) {
             
             // check the current point
             matrix.point(x, y).check();
-
+        
             // increment the x and y
             x += slope.run;
             y += slope.rise;
-            
-            // console.log(x);
-            // console.log(y);
             
             // call recursively until end point has been reached
             if (x !== x2 && y !== y2) {
@@ -139,26 +105,8 @@ var matrix_builder = function(wrapper_div) {
                 matrix.point(x2, y2).check();
             }
         };
-        
-        plot_line(x1, y1, calculate_slope())
-        
-        
-        // var end = matrix.point(x2, y2).check();
-        // var cur = matrix.point(x1, y1).check();
 
-        // var plot_line = function() {
-        //     cur.x += slope;
-        //     cur.y += slope;
-        //     matrix.point(cur.x, cur.y).check();
-        //     console.log('called');
-        //     if (cur.x > end.x && cur.y > end.y) {
-        //         plot_line();
-        //     }
-        // };
-        // 
-        // plot_line();
-        
-        return self;
+        return plot_line(x1, y1, calculate_slope());
     }
     
     matrix.point = function(x, y) {

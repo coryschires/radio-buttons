@@ -24,3 +24,26 @@
                 run: num
             }
         };
+
+
+        // x1, y1, x2, y2
+        
+        // 1) determine if slope is positive or negative (e.g. moving left to right, postive if y1 > y2)
+        // if slope positive, the rise should be a negative value
+        // if slope negative, the rise should be a positive value
+
+        if (y1 > y2) {
+            // slope is positive so rise should be negiative
+        } else {
+            // slope is negative so rise should be positive
+        }
+
+        // 2) determine if slope is moving forward or backward (e.g. moving left to right, forward if x1 < x2)            
+        // if slope moving forward, the run should be a positive value
+        // if slope moving backward, the run should be a negative value
+
+        if (x1 < x2) {
+            // slope is moving forward so run should be positive
+        } else {
+            // slope is moving backward so run should be negative
+        }
