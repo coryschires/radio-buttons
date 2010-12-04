@@ -1,20 +1,32 @@
-var rain_effect = function(matrix) {
+var rain_drops = function(matrix) {
     var rain = {};
+    var active_drops = 0;
 
-    rain.fall = function(drop) {
+    rain.make = function(drop) {
         drop.move('south');
 
-        if (drop.y < matrix.height) {
-            setTimeout(function() {
-                rain.fall(drop)
-            }, 250);
-        };
-    };
+        var drop_is_active = drop.y < matrix.height && !matrix.point(drop.x, drop.y+1).is_checked();
 
-    var test_drop = matrix.point(10,0);
-    rain.fall(test_drop);
+        if (drop_is_active) {
+            setTimeout(function() {
+                rain.make(drop)
+            }, 25);
+        } else {
+            active_drops -= 1;
+        };
+    };    
+    var drop = function() {
+        var x = (Math.floor(Math.random() * matrix.width)) + 1;
+        return matrix.point(x, 0);
+    };
+    
+    // make it rain
+    setInterval(function() {
+        if (active_drops < 4) {
+            rain.make(drop());
+            active_drops += 1;
+        };
+    }, 600);
 
     return rain;
 };
-
-// file:///Users/coryschires/Desktop/radio-buttons/index.html
