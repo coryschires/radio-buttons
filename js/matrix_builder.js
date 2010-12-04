@@ -207,6 +207,5 @@ var matrix_builder = function(wrapper_div) {
         effect(this);
     }
 
-
     return matrix;
 };
