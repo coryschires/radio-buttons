@@ -1,70 +1,38 @@
 var matrix_builder = function(wrapper_div) {
     var matrix = {};
+    
     matrix.wrapper = $(wrapper_div);
+    
+    matrix.width = function() {
+        return Math.floor($(window).width() / 12);
+    }();
+    matrix.height = function() {
+        return Math.floor($(window).height() / 13.8);
+    }();
 
-    var create_buttons = function(num) {
-        var button_count = $('input', matrix.wrapper).length
+    matrix.create = function() {
+        var data_y = 1;
+        var data_x = 1;
         
-        for (var i=0; i < num; i++) {
-            
-            if (matrix.exists()) {
-                var data_x = matrix.width - num + i + 1;
-                $('#checkbox_grid').append('<input type="radio" name="radio_'+(i+button_count)+'" id="radio_'+(i+button_count)+'" data-y="'+matrix.height+'" data-x="'+data_x+'">');
-            } else {
-                $('#checkbox_grid').append('<input type="radio" name="radio_'+(i+button_count)+'" id="radio_'+(i+button_count)+'">');
+        for (var i=0; i < matrix.height; i++) {
+            for (var j=0; j < matrix.width; j++) {
+                var input = '<input type="radio" name="radio_'+(j)+'" id="radio_'+(j)+' data-y='+data_y+' data-x='+data_x+' ">';
+                matrix.wrapper.append(input);
+                data_x += 1;
             }
+            matrix.wrapper.append('<br>');
+            data_y += 1;
+            data_x = 1;
         }
     };
-    
-    var number_of_buttons_to_fill_screen = function() {
-        var button_width = 13,
-            num_of_rows = $(window).width() / button_width,
-            num_of_cols = $(window).height() / button_width;
 
-        return num_of_rows * num_of_cols;
-    };
+    matrix.destroy = function() {
+        $('input', matrix.wrapper).remove();
+    }
 
-    var complete_final_row = function(width, height) {
-        var current_width_of_final_row = $("input[data-y='"+ height +"']").length;
-        create_buttons(width - current_width_of_final_row);
-    };
-
-    var apply_col_and_row_attributes = function() {
-        var current_y = 0,
-            current_top = 0;
-        var current_x = 0,
-            current_left = 0;
-
-        $('input', matrix.wrapper).each(function() {
-
-            // set row attributes
-            if (this.offsetTop > current_top) {
-                current_y += 1;
-                current_top = this.offsetTop;
-            }
-
-            // set col attributes
-            if (this.offsetLeft < current_left) {
-                current_x = 1;
-                current_left = this.offsetLeft;
-            } else {
-                current_x += 1;
-                current_left = this.offsetLeft;
-            }
-
-            // apply attributes
-            $(this).attr({'data-y': current_y, 'data-x': current_x});
-        });
-    };
-    
-    var set_demensions = function() {
-        matrix.width = $("input[data-y='1']").length;
-        matrix.height = $("input[data-x='1']").length;
-    };
-    
-    matrix.exists = function() {
-        return matrix.width && matrix.height;
-    };
+    matrix.draw = function(effect) {
+        effect(this);
+    }
     
     matrix.line = function(x1, y1, x2, y2) {
         var initial_rise = (y1 - y2) * -1;
@@ -188,23 +156,6 @@ var matrix_builder = function(wrapper_div) {
         // };
         
         return self;
-    }
-
-    matrix.create = function() {        
-        create_buttons(number_of_buttons_to_fill_screen());
-        apply_col_and_row_attributes();
-        set_demensions();
-        
-        complete_final_row(matrix.width, matrix.height)
-    };
-    
-    matrix.destroy = function() {
-        $('input', matrix.wrapper).remove();
-    }
-    matrix.draw = function(effect) {
-        matrix.destroy();
-        matrix.create();
-        effect(this);
     }
 
     return matrix;
