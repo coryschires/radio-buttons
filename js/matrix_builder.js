@@ -9,14 +9,14 @@ var matrix_builder = function(wrapper_div) {
     matrix.height = function() {
         return Math.floor($(window).height() / 13.8);
     }();
-
     matrix.create = function() {
         var data_y = 1;
         var data_x = 1;
         
-        for (var i=0; i < matrix.height; i++) {
-            for (var j=0; j < matrix.width; j++) {
-                var input = '<input type="radio" name="radio_'+(j)+'" id="radio_'+(j)+' data-y='+data_y+' data-x='+data_x+' ">';
+        for (var col = 0; col < matrix.height; col++) {
+            for (var row=0; row < matrix.width; row++) {
+                var count = (col * matrix.width) + row
+                var input = '<input type="radio" name="radio_'+count+'" id="radio_'+count+'" data-y="'+data_y+'" data-x="'+data_x+'" >';
                 matrix.wrapper.append(input);
                 data_x += 1;
             }
@@ -25,15 +25,12 @@ var matrix_builder = function(wrapper_div) {
             data_x = 1;
         }
     };
-
     matrix.destroy = function() {
         $('input', matrix.wrapper).remove();
     }
-
     matrix.draw = function(effect) {
         effect(this);
     }
-    
     matrix.line = function(x1, y1, x2, y2) {
         var initial_rise = (y1 - y2) * -1;
         var initial_run = (x1 - x2) * -1;
@@ -54,8 +51,6 @@ var matrix_builder = function(wrapper_div) {
             }
             return { rise: rise, run: run }
         };
-        
-        console.log(calculate_slope());
         
         var plot_line = function(x, y, slope) {
             
@@ -79,8 +74,8 @@ var matrix_builder = function(wrapper_div) {
     
     matrix.point = function(x, y) {
         var self = {}, cache;
-        self.x = x;
-        self.y = y;
+        self.x = parseInt(x);
+        self.y = parseInt(y);
 
         var cache = matrix.wrapper.find("input[data-y='"+self.y+"'][data-x='"+self.x+"']");
         
@@ -118,42 +113,40 @@ var matrix_builder = function(wrapper_div) {
             return matrix.point(neighbor.x, neighbor.y);
         };
 
-        // self.neighbors = function() {
-        // 
-        //     return {
-        //         primary: {
-        //             'north': self.neighbor('north'),
-        //             'south': self.neighbor('south'),
-        //             'east': neighbor('east'),
-        //             'west': neighbor('west')
-        //         },
-        //         secondary: {
-        //             'north': self.neighbor(0, 2),
-        //             'south': self.neighbor(0, -2),
-        //             'east': self.neighbor(2, 0),
-        //             'west': self.neighbor(-2, 0),
-        //             'northeast': self.neighbor('northeast'),
-        //             'southeast': self.neighbor('southeast'),
-        //             'southwest': self.neighbor('southwest'),
-        //             'northwest': self.neighbor('northwest')
-        //         },
-        //         tertiary: {
-        //             'north': self.neighbor(0, 3),
-        //             'south': self.neighbor(0, -3),
-        //             'east': self.neighbor(3, 0),
-        //             'west': self.neighbor(-3, 0),
-        //             'north_northeast': self.neighbor(1, -2),
-        //             'north_northweat': self.neighbor(-1, -2),
-        //             'south_southeast': self.neighbor(1, 2),
-        //             'north_southhweat': self.neighbor(-1, 2),
-        //             'east_northeast': self.neighbor(2, 1),
-        //             'east_southeast': self.neighbor(2, 1),
-        //             'west_northeast': self.neighbor(-2, -1),
-        //             'west_southeast': self.neighbor(-2, -1)
-        //         }
-        // 
-        //     };
-        // };
+        self.neighbors = function() {
+            return {
+                primary: {
+                    'north': self.neighbor('north'),
+                    'south': self.neighbor('south'),
+                    'east': self.neighbor('east'),
+                    'west': self.neighbor('west')
+                },
+                secondary: {
+                    'north': self.neighbor(0, -2),
+                    'south': self.neighbor(0, 2),
+                    'east': self.neighbor(2, 0),
+                    'west': self.neighbor(-2, 0),
+                    'northeast': self.neighbor('northeast'),
+                    'southeast': self.neighbor('southeast'),
+                    'southwest': self.neighbor('southwest'),
+                    'northwest': self.neighbor('northwest')
+                },
+                tertiary: {
+                    'north': self.neighbor(0, -3),
+                    'south': self.neighbor(0, 3),
+                    'east': self.neighbor(3, 0),
+                    'west': self.neighbor(-3, 0),
+                    'north_northeast': self.neighbor(1, -2),
+                    'north_northweat': self.neighbor(-1, -2),
+                    'south_southeast': self.neighbor(1, 2),
+                    'north_southwest': self.neighbor(-1, 2),
+                    'east_northeast': self.neighbor(2, -1),
+                    'east_southeast': self.neighbor(2, 1),
+                    'west_northeast': self.neighbor(-2, -1),
+                    'west_southeast': self.neighbor(-2, 1)
+                }
+            };
+        };
         
         return self;
     }

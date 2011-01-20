@@ -3,14 +3,14 @@ $(document).ready(function() {
 
     matrix.create();
     
-    // matrix.line(3,3, 12,9)
+    // matrix.point(10,10).check().neighbor(0, -3).check();
 
 
     // $('select').change(function() {
     //     var selection = $(this).val();
     // 
     //     if (selection === "rain") {
-            // matrix.draw(rain_drops);
+    //         matrix.draw(rain_drops);
     //     } else {
             matrix.draw(snake);
     //     }

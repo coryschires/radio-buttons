@@ -1,102 +1,56 @@
-var snake = function() {
+var snake = function(matrix) {
 
-    var get_neighbors = function(radio) {
-        var row = parseInt(radio.attr('data-y')),
-            col = parseInt(radio.attr('data-x'));
-
-        var find_radio = function(row, col) {
-            return $("input[data-x='"+ col +"'][data-y='"+ row +"']");
-        }
-
-        return {
-            primary: {
-                'north': find_radio(row-1, col),
-                'south': find_radio(row+1, col),
-                'east': find_radio(row, col+1),
-                'west': find_radio(row, col-1)
-            },
-            secondary: {
-                'north': find_radio(row-2, col),
-                'south': find_radio(row+2, col),
-                'east': find_radio(row, col+2),
-                'west': find_radio(row, col-2),
-                'northeast': find_radio(row-1, col+1),
-                'southeast': find_radio(row+1, col+1),
-                'southwest': find_radio(row+1, col-1),
-                'northwest': find_radio(row-1, col-1)
-            },
-            tertiary: {
-                'north': find_radio(row-3, col),
-                'south': find_radio(row+3, col),
-                'east': find_radio(row, col+3),
-                'west': find_radio(row, col-3),
-                'north_northeast': find_radio(row-2, col+1),
-                'north_northweat': find_radio(row-2, col-1),
-                'south_southeast': find_radio(row+2, col+1),
-                'north_southhweat': find_radio(row+2, col-1),
-                'east_northeast': find_radio(row-1, col+2),
-                'east_southeast': find_radio(row+1, col+2),
-                'west_northeast': find_radio(row-1, col-2),
-                'west_southeast': find_radio(row+1, col-2),
-            }
-
-        };
-
-    };
-
-    var uncheck = function(radio) {
-        var neighbors = get_neighbors(radio);
+    var fade = function(point) {
+        var neighbors = point.neighbors();
         
         // main radio button
         setTimeout(function() { 
-            radio.attr('checked', false); 
+            point.uncheck();
         }, 900);
         
-        // primary neighboring radio buttons
         setTimeout(function() {
             $.each(neighbors.primary, function(key, val) {
-                val.attr('checked', false);
+                val.uncheck();
             });
         }, 700);
         
-        // secondary radio buttons
         setTimeout(function() {
             $.each(neighbors.secondary, function(key, val) {
-                val.attr('checked', false);
+                val.uncheck();
             });
         }, 500);
-
-        // secondary radio buttons
+            
         setTimeout(function() {
             $.each(neighbors.tertiary, function(key, val) {
-                val.attr('checked', false);
+                val.uncheck();
             });
         }, 300);
     };
 
-    var check = function(radio) {
-        var neighbors = get_neighbors(radio);
-    
+    var draw = function(point) {
+        var neighbors = point.neighbors();
+
         $.each(neighbors.primary, function(key, val) {
-            val.attr('checked', true);
+            val.check();
         });
 
         $.each(neighbors.secondary, function(key, val) {
-            val.attr('checked', true);
+            val.check();
         });
 
         $.each(neighbors.tertiary, function(key, val) {
-            val.attr('checked', true);
+            val.check();
         });
-        
-        radio.attr('checked', true);
+
+        point.check();
     };
 
-
     return $('input').hover(function() {
-        check($(this));
+        var input = $(this);
+        draw(matrix.point(input.attr('data-x'), input.attr('data-y')));
     }, function() {
-        uncheck($(this));
+        var input = $(this);
+        fade(matrix.point(input.attr('data-x'), input.attr('data-y')));
     });
-    
+
 };
