@@ -2,7 +2,7 @@
 
 Radio Button Canvas is an unusual (and totally useless) jQuery plug that creates a matrix of radio buttons. It looks like this: 
 
-http://coryschires-blog-post-images.s3.amazonaws.com/breakout_screenshot.png
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas.png
 
 All tightly packed together, you can think of the buttons as pixels which you can use to create simple animations, pictures, and even games. You can see a few examples on the {demo page}[radio-buttons.coryschires.com]. 
 
