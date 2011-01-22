@@ -113,7 +113,7 @@
                     self.neighbor = function(x, y) {
                         var neighbor = { x: self.x, y: self.y };
                         
-                        // allow user to pass ordinal/cardinal directions for convienence 
+                        // allow user to pass ordinal/cardinal directions for convienence
                         if (x === "north")          { neighbor.y -= 1; }
                         else if (x === "south")     { neighbor.y += 1; }
                         else if (x === "east")      { neighbor.x += 1; }

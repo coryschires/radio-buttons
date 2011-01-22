@@ -1,9 +1,14 @@
 $(document).ready(function() {
 
-    var canvas = $('#canvas').radio_button_canvas();
-
+    var canvas = $('#canvas').radio_button_canvas({
+        width: 697,
+        height: 347
+    });
     canvas.create();
-    canvas.draw(snake);
+    canvas.point(5,5).check();
+
+    // canvas.draw(snake);
+    
 
     // canvas.point(10,10).check().neighbor(0, -3).check();
 

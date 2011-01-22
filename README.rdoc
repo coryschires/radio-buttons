@@ -2,7 +2,7 @@
 
 Radio Button Canvas is an unusual (and totally useless) jQuery plug that creates a matrix of radio buttons. It looks like this: 
 
-http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas.png
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/blank.png
 
 All tightly packed together, you can think of the buttons as pixels which you can use to create simple animations, pictures, and even games. You can see a few examples on the {demo page}[radio-buttons.coryschires.com]. 
 
@@ -23,7 +23,15 @@ Now that you've got a canvas, you can start doing cool stuff with it. First, you
 
     canvas.create();
 
-From here on can do whatever you like (hint: tetris). I've included a really basic API to help speed things along.
+After creating the canvas you have a lot of flexibility to draw whatever you like. However, I've included a really basic API to help speed things along. For example, let's add a point to our matrix:
 
+    var canvas = $('#canvas').radio_button_canvas();    // call the plugin
+    canvas.create();                                    // initialize the canvas
+    canvas.point(5,5).check();                          // create a point and check it
+
+And then we have a point:
+
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/point.png
 
 == How to use the API.
+
