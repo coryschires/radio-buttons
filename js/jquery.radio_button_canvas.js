@@ -2,6 +2,8 @@
 
     $.radio_button_canvas = {
         defaults: {
+            width: $(window).width(),
+            height: $(window).height()
         }
     }
 
@@ -16,10 +18,12 @@
                 matrix.wrapper = $(this);
 
                 matrix.width = function() {
-                    return Math.floor($(window).width() / 12);
+                    var width = config.width;
+                    return Math.floor(width / 12);
                 }();
                 matrix.height = function() {
-                    return Math.floor($(window).height() / 13.8);
+                    var height = config.height;
+                    return Math.floor(height / 13.8);
                 }();
                 matrix.create = function() {
                     var data_y = 1;
