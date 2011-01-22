@@ -1,9 +1,10 @@
 $(document).ready(function() {
-    var matrix = matrix_builder('#checkbox_grid');
 
-    matrix.create();
-    
-    // matrix.point(10,10).check().neighbor(0, -3).check();
+    var canvas = $('#radio_button_canvas').radio_button_canvas();
+    console.log(canvas);
+    canvas.create();
+
+    // canvas.point(10,10).check().neighbor(0, -3).check();
 
 
     // $('select').change(function() {
@@ -12,7 +13,7 @@ $(document).ready(function() {
     //     if (selection === "rain") {
     //         matrix.draw(rain_drops);
     //     } else {
-            matrix.draw(snake);
+            canvas.draw(snake);
     //     }
     // });
 });
