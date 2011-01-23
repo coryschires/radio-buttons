@@ -51,6 +51,7 @@
                 matrix.line = function(x1, y1, x2, y2) {
                     var initial_rise = (y1 - y2) * -1;
                     var initial_run = (x1 - x2) * -1;
+                    var line = [];
                     
                     var calculate_slope = function() {
                         var rise = initial_rise
@@ -58,7 +59,7 @@
                         
                         var divisor = 2
                         
-                        while (divisor < Math.abs(initial_rise) && divisor < Math.abs(initial_run)) {
+                        while (divisor <= Math.abs(initial_rise) && divisor <= Math.abs(initial_run)) {
                             if (rise % divisor === 0 && run % divisor === 0) {
                                 rise = rise / divisor
                                 run = run / divisor
@@ -71,31 +72,28 @@
                     
                     var plot_line = function(x, y, slope) {
                         
-                        // check the current point
-                        matrix.point(x, y).check();
-                        
-                        // console.log('run: ' + slope.run);
-                        // console.log('rise: ' + slope.rise);
+                        // check the current point and add to line array
+                        line.push(matrix.point(x, y).check());
                         
                         // increment the x and y
                         x += slope.run;
                         y += slope.rise;
                         
                         // call recursively until end point has been reached
-                        if (x !== x2 && y !== y2) {
+                        if (x <= x2 && y <= y2) {
                             plot_line(x, y, slope);
-                        } else {
-                            matrix.point(x2, y2).check();
                         }
                     };
-            
-                    return plot_line(x1, y1, calculate_slope());
+                    
+                    plot_line(x1, y1, calculate_slope());
+                    
+                    return line;
                 }
                 matrix.point = function(x, y) {
                     var self = {}, cache;
                     self.x = parseInt(x);
                     self.y = parseInt(y);
-            
+                    
                     cache = matrix.wrapper.find("input[data-y='"+self.y+"'][data-x='"+self.x+"']");
                     
                     self.check = function() {
@@ -112,7 +110,7 @@
                     self.move = function(x, y) {
                         return self.uncheck().neighbor(x, y).check();
                     };
-            
+                    
                     self.neighbor = function(x, y) {
                         var neighbor = { x: self.x, y: self.y };
                         

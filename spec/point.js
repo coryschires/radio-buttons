@@ -2,7 +2,7 @@ describe("radio_button_canvas#point", function() {
   var canvas;
   
   beforeEach(function() {
-    canvas = $('<div>').radio_button_canvas({ width: 697, height: 347 });
+    canvas = $('<div>').radio_button_canvas();
   });
   
   describe("#point()", function() {

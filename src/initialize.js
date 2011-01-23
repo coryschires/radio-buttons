@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
     var canvas = $('#canvas').radio_button_canvas({
-        width: 697,
+        width: 507,
         height: 347
     });
     canvas.create();
     
-    // canvas.line(2,2, 9,9);
+    canvas.line(2,2, 14,4);
 
     
     
