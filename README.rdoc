@@ -8,7 +8,7 @@ All tightly packed together, you can think of the buttons as pixels which you ca
 
 I'm working a basic API which makes creating your own radio-button art quite a bit easier. It's still pretty rough and minimally-featured. Any contributions would be great, so feel free to fork it and mess around.
 
-<em>Note: This plugin is still being actively developed. The API will almost certainly change rapidly without notice. It's far from production ready.</em>
+<em>Note: This plugin is still being actively developed. The API will almost certainly change rapidly and without notice. It's far from production ready.</em>
 
 == Getting started.
 
@@ -44,4 +44,6 @@ You can also draw lines:
 
 
 == How to use the API.
+
+I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the unit tests. They do a fairly good job specifying the code.
 
