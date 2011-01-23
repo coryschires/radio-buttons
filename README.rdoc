@@ -17,7 +17,7 @@ Obviously, you'll need to include the necessary scripts in your <tt>head</tt> el
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
     <script src="jquery.radio_button_canvas.js" type="text/javascript" charset="utf-8"></script>
 
-Next, you need initialize your radio buttons canvas. It's pretty simple. Call it like any other jQuery plugin, but be sure to store the returned value in a variable. We'll need it later.
+Next, you need initialize your radio button canvas. It's pretty simple. Call it like any other jQuery plugin, but be sure to store the returned value in a variable. We'll need it later.
     
     var canvas = $('#radio_button_canvas').radio_button_canvas();
 
@@ -25,7 +25,7 @@ Now that you've got a canvas, you can start doing cool stuff with it. First, you
 
     canvas.create();
 
-After creating the canvas you have a lot of flexibility to draw whatever you like. However, I've included a really basic API to help speed things along. For example, let's add a point to our matrix:
+After creating the canvas you have a lot of flexibility to draw whatever you like. However, I've included a really basic API to help speed things along. For example, let's add a point to our canvas:
 
     var canvas = $('#canvas').radio_button_canvas();    // call the plugin
     canvas.create();                                    // initialize the canvas
