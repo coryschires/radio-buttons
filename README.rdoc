@@ -17,7 +17,7 @@ Obviously, you'll need to include the necessary scripts in your <tt>head</tt> el
 
 Next, you need initialize your radio buttons canvas. It's pretty simple. Call it like any other jQuery plugin, but be sure to store the returned value in a variable. We'll need it later.
     
-    var canvas = $('#radio_button_canvas').matrix_builder();
+    var canvas = $('#radio_button_canvas').radio_button_canvas();
 
 Now that you've got a canvas, you can start doing cool stuff with it. First, you'll need to explicitly create the thing:
 
@@ -35,7 +35,7 @@ http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/point.p
 
 All methods return <tt>self</tt> to allow chaining:
 
-canvas.point(5,5).check().move('north').uncheck();
+    canvas.point(5,5).check().move('north').uncheck();
 
 You can also draw lines:
 
