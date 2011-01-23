@@ -1,3 +1,15 @@
+/**
+ * Radio Button Canvas - jQuery plugin that creates a matrix of radio buttons
+ * that you can use to create simple animations, pictures, and even games.
+ *
+ * Copyright (c) 2011 Cory Schires (coryschires.com)
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ * Version: 0.0.1
+ */
+
 (function($) {
 
     $.radio_button_canvas = {

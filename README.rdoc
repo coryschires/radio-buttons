@@ -6,7 +6,9 @@ http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/blank.p
 
 All tightly packed together, you can think of the buttons as pixels which you can use to create simple animations, pictures, and even games. You can see a few examples on the {demo page}[radio-buttons.coryschires.com]. 
 
-I'm working a basic API which makes creating your own radio-button art quite a bit easier. It's still pretty rough and minimally-featured. Any contributions would be great, so feel free to fork it and mess around. 
+I'm working a basic API which makes creating your own radio-button art quite a bit easier. It's still pretty rough and minimally-featured. Any contributions would be great, so feel free to fork it and mess around.
+
+<em>Note: This plugin is still being actively developed. The API will almost certainly change rapidly without notice. It's far from production ready.</em>
 
 == Getting started.
 
