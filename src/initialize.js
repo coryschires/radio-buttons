@@ -5,7 +5,11 @@ $(document).ready(function() {
         height: 347
     });
     canvas.create();
-    canvas.point(5,5).check();
+    
+    // canvas.line(2,2, 9,9);
+
+    
+    
 
     // canvas.draw(snake);
     

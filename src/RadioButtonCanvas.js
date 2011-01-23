@@ -55,9 +55,9 @@
                     var calculate_slope = function() {
                         var rise = initial_rise
                         var run = initial_run;
-            
+                        
                         var divisor = 2
-            
+                        
                         while (divisor < Math.abs(initial_rise) && divisor < Math.abs(initial_run)) {
                             if (rise % divisor === 0 && run % divisor === 0) {
                                 rise = rise / divisor
@@ -73,7 +73,10 @@
                         
                         // check the current point
                         matrix.point(x, y).check();
-                    
+                        
+                        // console.log('run: ' + slope.run);
+                        // console.log('rise: ' + slope.rise);
+                        
                         // increment the x and y
                         x += slope.run;
                         y += slope.rise;
@@ -93,7 +96,7 @@
                     self.x = parseInt(x);
                     self.y = parseInt(y);
             
-                    var cache = matrix.wrapper.find("input[data-y='"+self.y+"'][data-x='"+self.x+"']");
+                    cache = matrix.wrapper.find("input[data-y='"+self.y+"'][data-x='"+self.x+"']");
                     
                     self.check = function() {
                         cache.attr('checked', true);
