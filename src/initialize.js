@@ -6,7 +6,7 @@ $(document).ready(function() {
     });
     canvas.create();
     
-    canvas.line(2,2, 14,4);
+    canvas.line(2,2, 8,5);
 
     
     

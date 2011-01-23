@@ -6,7 +6,7 @@ http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/blank.p
 
 All tightly packed together, you can think of the buttons as pixels which you can use to create simple animations, pictures, and even games. You can see a few examples on the {demo page}[radio-buttons.coryschires.com]. 
 
-I'm working a basic API which makes creating your own radio-button art quite a bit easier. It's still pretty rough and minimally-featured. Any contributions would be great, so feel free to fork it and mess around.
+I'm working on a basic API which makes creating your own radio-button projects quite a bit easier. It's still pretty rough and minimally-featured. Any contributions would be great, so feel free to fork it and mess around.
 
 <em>Note: This plugin is still being actively developed. The API will almost certainly change rapidly and without notice. It's far from production ready.</em>
 
@@ -35,13 +35,17 @@ And then we have a point:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/point.png
 
-All methods return <tt>self</tt> to allow chaining:
-
-    canvas.point(5,5).check().move('north').uncheck();
-
 You can also draw lines:
 
+    canvas.line(2,2, 8,5);
 
+Which produces:
+
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/line.png
+
+Also, all methods return something sensible to allow chaining. Points, for example, return <tt>self</tt> allowing you to do things like:
+
+    canvas.point(5,5).check().move('north').uncheck();
 
 == How to use the API.
 
