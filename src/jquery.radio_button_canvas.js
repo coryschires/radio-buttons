@@ -37,26 +37,6 @@
                     var height = config.height;
                     return Math.floor(height / 13.8);
                 }();
-                matrix.create = function() {
-                    var data_y = 1;
-                    var data_x = 1;
-                
-                    for (var col = 0; col < matrix.height; col++) {
-                        for (var row=0; row < matrix.width; row++) {
-                            var count = (col * matrix.width) + row
-                            var input = '<input type="radio" name="radio_'+count+'" id="radio_'+count+'" data-y="'+data_y+'" data-x="'+data_x+'" >';
-                            matrix.wrapper.append(input);
-                            data_x += 1;
-                        }
-                        matrix.wrapper.append('<br>');
-                        data_y += 1;
-                        data_x = 1;
-                    }
-                    
-                };                
-                matrix.destroy = function() {
-                    $('input', matrix.wrapper).remove();
-                }
                 matrix.draw = function(effect) {
                     effect(this);
                 }
@@ -179,6 +159,24 @@
                     
                     return self;
                 }
+
+                matrix.create_on_page_load = function() {
+                    var data_y = 1;
+                    var data_x = 1;
+                
+                    for (var col = 0; col < matrix.height; col++) {
+                        for (var row=0; row < matrix.width; row++) {
+                            var count = (col * matrix.width) + row
+                            var input = '<input type="radio" name="radio_'+count+'" id="radio_'+count+'" data-y="'+data_y+'" data-x="'+data_x+'" >';
+                            matrix.wrapper.append(input);
+                            data_x += 1;
+                        }
+                        matrix.wrapper.append('<br>');
+                        data_y += 1;
+                        data_x = 1;
+                    }
+                    
+                }();
             
             })
             return matrix;

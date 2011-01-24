@@ -19,16 +19,18 @@ Obviously, you'll need to include the necessary scripts in your <tt>head</tt> el
 
 Next, you need initialize your radio button canvas. It's pretty simple. Call it like any other jQuery plugin, but be sure to store the returned value in a variable. We'll need it later.
     
-    var canvas = $('#radio_button_canvas').radio_button_canvas();
+    var canvas = $('#canvas').radio_button_canvas();
 
-Now that you've got a canvas, you can start doing cool stuff with it. First, you'll need to explicitly create the thing:
+You can also pass configuration options to specify the canvas width or height:
 
-    canvas.create();
+    var canvas = $('#canvas').radio_button_canvas({
+        width: 500,     // defaults to $(window).width(),
+        height: 350     // defaults to $(window).height()
+    });
 
 After creating the canvas you have a lot of flexibility to draw whatever you like. However, I've included a really basic API to help speed things along. For example, let's add a point to our canvas:
 
-    var canvas = $('#canvas').radio_button_canvas();    // call the plugin
-    canvas.create();                                    // initialize the canvas
+    var canvas = $('#canvas').radio_button_canvas();    // call the plugin canvas
     canvas.point(5,5).check();                          // create a point and check it
 
 And then we have a point:

@@ -4,7 +4,6 @@ $(document).ready(function() {
         width: 507,
         height: 347
     });
-    canvas.create();
     
     canvas.line(2,2, 8,5);
 
