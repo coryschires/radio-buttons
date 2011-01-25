@@ -4,18 +4,19 @@ $(document).ready(function() {
         width: 507,
         height: 347
     });
-    
-    canvas.line(2,2, 8,5);
 
-    
-    
+    var shape = canvas.shape([ 
+      [2,2], [3,2], [3,3], [4,3] 
+    ]);
 
+
+
+    setInterval(function() {
+      shape.move('south');
+    }, 200);
+ 
     // canvas.draw(snake);
     
-
-    // canvas.point(10,10).check().neighbor(0, -3).check();
-
-
     // $('select').change(function() {
     //     var selection = $(this).val();
     // 

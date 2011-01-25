@@ -1,9 +1,15 @@
-describe("radio_button_canvas#point", function() {
+describe("radio_button_canvas point functions", function() {
   var canvas;
   
   beforeEach(function() {
     canvas = $('<div>').radio_button_canvas();
-    canvas.create();
+  });
+  
+  describe("private initialization function", function() {
+    it("should should automatically check the point when initialized", function() {
+      var point = canvas.point(5,5)
+      expect(point.is_checked()).toEqual(true);
+    });
   });
   
   describe("getter functions for x and y cordinates", function() {
@@ -34,7 +40,7 @@ describe("radio_button_canvas#point", function() {
       expect(point.is_checked()).toBe(true)
     });
     it("should mark the radio button as unchecked", function() {
-      var point = canvas.point(3,7).check().uncheck();
+      var point = canvas.point(3,7).uncheck();
       expect(point.is_checked()).toBe(false)
     });
   });

@@ -1,5 +1,5 @@
 /**
- * Radio Button Canvas - jQuery plugin that creates a matrix of radio buttons
+ * Radio Button Canvas - jQuery plugin that creates a canvas of radio buttons
  * that you can use to create simple animations, pictures, and even games.
  *
  * Copyright (c) 2011 Cory Schires (coryschires.com)
@@ -23,24 +23,21 @@
         radio_button_canvas: function(config) {
             
             var config = $.extend({}, $.radio_button_canvas.defaults, config);
-            var matrix = {};
+            var canvas = {};
             
             this.each(function() {
 
-                matrix.wrapper = $(this);
-
-                matrix.width = function() {
-                    var width = config.width;
-                    return Math.floor(width / 12);
+                canvas.self = $(this);
+                canvas.width = function() {
+                    return Math.floor(config.width / 12);
                 }();
-                matrix.height = function() {
-                    var height = config.height;
-                    return Math.floor(height / 13.8);
+                canvas.height = function() {
+                    return Math.floor(config.height / 13.8);
                 }();
-                matrix.draw = function(effect) {
+                canvas.draw = function(effect) {
                     effect(this);
                 }
-                matrix.line = function(x1, y1, x2, y2) {
+                canvas.line = function(x1, y1, x2, y2) {
                     var initial_rise = (y1 - y2) * -1;
                     var initial_run = (x1 - x2) * -1;
                     var line = [];
@@ -65,7 +62,7 @@
                     var plot_line = function(x, y, slope) {
                         
                         // check the current point and add to line array
-                        line.push(matrix.point(x, y).check());
+                        line.push(canvas.point(x, y));
                         
                         // increment the x and y
                         x += slope.run;
@@ -81,12 +78,12 @@
                     
                     return line;
                 }
-                matrix.point = function(x, y) {
+                canvas.point = function(x, y) {
                     var self = {}, cache;
                     self.x = parseInt(x);
                     self.y = parseInt(y);
                     
-                    cache = matrix.wrapper.find("input[data-y='"+self.y+"'][data-x='"+self.x+"']");
+                    cache = canvas.self.find("input[data-y='"+self.y+"'][data-x='"+self.x+"']");
                     
                     self.check = function() {
                         cache.attr('checked', true);
@@ -119,7 +116,7 @@
                         // but default to more powerful cartesian coordinates
                         else { neighbor.x += x; neighbor.y += y; }
                         
-                        return matrix.point(neighbor.x, neighbor.y);
+                        return canvas.point(neighbor.x, neighbor.y).uncheck();
                     };
             
                     self.neighbors = function() {
@@ -157,21 +154,50 @@
                         };
                     };
                     
+                    var initialize = function() {
+                      self.check();
+                    }();
+                    
                     return self;
                 }
 
-                matrix.create_on_page_load = function() {
+                canvas.shape = function(points) {
+                  var self = {};
+                  self.points = [];
+                  
+                  self.move = function(x, y) {
+                    $.each(self.points, function(index, point) {
+                      self.points[index] = point.move(x, y);
+                    });
+                    $.each(self.points, function(index, point) {
+                      self.points[index].check();
+                    });
+                    return self;
+                  };
+                  
+                  var initialize = function() {
+                    $.each(points, function(index, coordinate) {
+                      var point = canvas.point(coordinate[0], coordinate[1]);
+                      self.points.push(point);
+                    });
+                  }();
+
+
+                  return self;
+                };
+                
+                var initialize = function() {
                     var data_y = 1;
                     var data_x = 1;
                 
-                    for (var col = 0; col < matrix.height; col++) {
-                        for (var row=0; row < matrix.width; row++) {
-                            var count = (col * matrix.width) + row
+                    for (var col = 0; col < canvas.height; col++) {
+                        for (var row=0; row < canvas.width; row++) {
+                            var count = (col * canvas.width) + row
                             var input = '<input type="radio" name="radio_'+count+'" id="radio_'+count+'" data-y="'+data_y+'" data-x="'+data_x+'" >';
-                            matrix.wrapper.append(input);
+                            canvas.self.append(input);
                             data_x += 1;
                         }
-                        matrix.wrapper.append('<br>');
+                        canvas.self.append('<br>');
                         data_y += 1;
                         data_x = 1;
                     }
@@ -179,7 +205,7 @@
                 }();
             
             })
-            return matrix;
+            return canvas;
         }
     })
 

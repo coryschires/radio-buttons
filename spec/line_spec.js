@@ -1,10 +1,9 @@
-describe("radio_button_canvas#line", function() {
+describe("radio_button_canvas line functions", function() {
   var canvas;
   var line;
     
   beforeEach(function() {
     canvas = $('<div>').radio_button_canvas();
-    canvas.create();
   });
   
   describe("the line is between 2,2 and 4,4", function() {
@@ -45,16 +44,13 @@ describe("radio_button_canvas#line", function() {
       expect(line.length).toEqual(3);
     });
     it("should contian point(2,2) in the first position", function() {
-      expect(line[0].x).toEqual(2);
-      expect(line[0].y).toEqual(2);
+      expect(line[0]).toHaveCoordinates(2,2)
     });
     it("should contian point(3,3) in the second position", function() {
-      expect(line[1].x).toEqual(3);
-      expect(line[1].y).toEqual(3);
+      expect(line[1]).toHaveCoordinates(3,3)
     });
     it("should contian point(4,4) in the third position", function() {
-      expect(line[2].x).toEqual(4);
-      expect(line[2].y).toEqual(4);
+      expect(line[2]).toHaveCoordinates(4,4)
     });
   });
 });
