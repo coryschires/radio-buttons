@@ -40,7 +40,7 @@
                 canvas.line = function(x1, y1, x2, y2) {
                     var initial_rise = (y1 - y2) * -1;
                     var initial_run = (x1 - x2) * -1;
-                    var line = [];
+                    var points = [];
                     
                     var calculate_slope = function() {
                         var rise = initial_rise
@@ -61,8 +61,8 @@
                     
                     var plot_line = function(x, y, slope) {
                         
-                        // check the current point and add to line array
-                        line.push(canvas.point(x, y));
+                        // push the current coordinates into the points array
+                        points.push([x, y]);
                         
                         // increment the x and y
                         x += slope.run;
@@ -74,9 +74,11 @@
                         }
                     };
                     
-                    plot_line(x1, y1, calculate_slope());
+                    var initialize = function() {
+                      plot_line(x1, y1, calculate_slope());
+                    }();
                     
-                    return line;
+                    return canvas.shape(points);
                 }
                 canvas.point = function(x, y) {
                     var self = {}, cache;

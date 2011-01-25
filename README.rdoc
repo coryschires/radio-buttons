@@ -31,7 +31,7 @@ You can also pass configuration options to specify the canvas width or height:
 After creating the canvas you have a lot of flexibility to draw whatever you like. However, I've included a really basic API to help speed things along. For example, let's add a point to our canvas:
 
     var canvas = $('#canvas').radio_button_canvas();    // call the plugin canvas
-    canvas.point(5,5).check();                          // create a point and check it
+    canvas.point(5,5);                                  // create a point
 
 And then we have a point:
 
@@ -47,7 +47,16 @@ http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/line.pn
 
 Also, all methods return something sensible to allow chaining. Points, for example, return <tt>self</tt> allowing you to do things like:
 
-    canvas.point(5,5).check().move('north').uncheck();
+    canvas.point(5,5).move('north').uncheck();
+
+All shapes, such as lines, return an array of points that constitute the shape. This allows you to call methods on the entire shape at once. For example, let's draw a line and slowly move it east across the canvas:
+
+    var line = canvas.line(2,2, 8,5);   // draw the line
+
+    setInterval(function() {            // move it east 
+      line.move('east');
+    }, 200);
+
 
 == How to use the API.
 

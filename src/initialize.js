@@ -4,16 +4,20 @@ $(document).ready(function() {
         width: 507,
         height: 347
     });
-
-    var shape = canvas.shape([ 
-      [2,2], [3,2], [3,3], [4,3] 
-    ]);
-
-
-
-    setInterval(function() {
-      shape.move('south');
-    }, 200);
+    
+    // var shape = canvas.shape([ 
+    //   [2,2], [3,2], [3,3], [4,3] 
+    // ]);
+    // 
+    // setInterval(function() {
+    //   shape.move('south');
+    // }, 200);
+    
+    
+    var line = canvas.line(2,2, 8,5);
+    // setInterval(function() {
+    //   line.move('east');
+    // }, 200);
  
     // canvas.draw(snake);
     
