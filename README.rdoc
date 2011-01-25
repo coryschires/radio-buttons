@@ -49,11 +49,11 @@ Also, all methods return something sensible to allow chaining. Points, for examp
 
     canvas.point(5,5).move('north').uncheck();
 
-All shapes, such as lines, return an array of points that constitute the shape. This allows you to call methods on the entire shape at once. For example, let's draw a line and slowly move it east across the canvas:
+All shapes, such as lines, return an object which contains the array of points that constitute the shape. Shapes come packed with a bunch of methods which allow you to manipulate the entire shape at once. For example, let's draw a line and slowly move it eastward across the canvas:
 
     var line = canvas.line(2,2, 8,5);   // draw the line
 
-    setInterval(function() {            // move it east 
+    setInterval(function() {            // move it east
       line.move('east');
     }, 200);
 
