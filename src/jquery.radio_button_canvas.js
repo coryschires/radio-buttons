@@ -45,10 +45,9 @@
                     var calculate_slope = function() {
                         var rise = initial_rise
                         var run = initial_run;
-                        
                         var divisor = 2
                         
-                        while (divisor <= Math.abs(initial_rise) && divisor <= Math.abs(initial_run)) {
+                        while (divisor <= Math.abs(initial_rise) || divisor <= Math.abs(initial_run)) {
                             if (rise % divisor === 0 && run % divisor === 0) {
                                 rise = rise / divisor
                                 run = run / divisor
@@ -56,20 +55,20 @@
                                 divisor += 1;
                             }
                         }
+
                         return { rise: rise, run: run }
                     };
                     
                     var plot_line = function(x, y, slope) {
-                        
+                        var have_not_reached_endpoint = !(x === x2 && y === y2);
+
                         // push the current coordinates into the points array
                         points.push([x, y]);
                         
-                        // increment the x and y
-                        x += slope.run;
-                        y += slope.rise;
-                        
-                        // call recursively until end point has been reached
-                        if (x <= x2 && y <= y2) {
+                        if ( have_not_reached_endpoint ) {
+                            // increment the x and y and call recursively
+                            x += slope.run;
+                            y += slope.rise;
                             plot_line(x, y, slope);
                         }
                     };
@@ -166,35 +165,52 @@
                 canvas.rect = function(top_left_x, top_left_y, bottom_right_x, bottom_right_y) {
                   var points = [];
                   
-                  var initialize = function() {
-
-                    var add_point = function(x, y) {
-                      points.push([x,y]);
-
-                      var east = x < bottom_right_x && y === top_left_y;
-                      var south = x === bottom_right_x && y < bottom_right_y;
-                      var west = x > top_left_x && y === bottom_right_y;
-                      var north = x === top_left_x && y > top_left_y;
-                      
-                      if (east) {
-                        add_point(x+1, y);
-                      } else if (south) {
-                        add_point(x, y+1)
-                      } else if (west) {
-                        add_point(x-1, y)
-                      } else if (north) {
-                        if ((x, y-1) !== (top_left_x, top_left_y)  && north) {
-                          add_point(x, y-1);
-                        }
-
-                      }
-                    };
+                  var tlX = top_left_x,
+                      tlY = top_left_y,
+                      trX = top_left_x,
+                      trY = bottom_right_y,
+                      blX = top_left_x,
+                      blY = bottom_right_y,
+                      brX = bottom_right_x,
+                      brY = bottom_right_y
                     
-                    add_point(top_left_x, top_left_y);
+                  // var top_side = canvas.line(tlX, tlY, trX, trY)
+                  
+                  // canvas.point(tlX, tlY)
+                  // canvas.point(blX, blY)
+                  
+                  canvas.line(tlX, tlY, blX, blY)
+                  
+                  
+                  // var initialize = function() {
+                  // 
+                  //   var add_point = function(x, y) {
+                  //     points.push([x,y]);
+                  // 
+                  //     var east = x < bottom_right_x && y === top_left_y;
+                  //     var south = x === bottom_right_x && y < bottom_right_y;
+                  //     var west = x > top_left_x && y === bottom_right_y;
+                  //     var north = x === top_left_x && y > top_left_y;
+                  //     
+                  //     if (east) {
+                  //       add_point(x+1, y);
+                  //     } else if (south) {
+                  //       add_point(x, y+1)
+                  //     } else if (west) {
+                  //       add_point(x-1, y)
+                  //     } else if (north) {
+                  //       if ((x, y-1) !== (top_left_x, top_left_y)  && north) {
+                  //         add_point(x, y-1);
+                  //       }
+                  // 
+                  //     }
+                  //   };
                     
-                  }();
+                    // add_point(top_left_x, top_left_y);
+                    
+                  // }();
 
-                  return canvas.shape(points);
+                  // return canvas.shape(points);
                 };
                 
                 

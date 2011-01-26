@@ -13,8 +13,22 @@ $(document).ready(function() {
     //   shape.move('south');
     // }, 200);
     
+
+    // canvas.line(4,10, 8,6)
     
-    var rect = canvas.rect(2,2, 8,8);
+    
+    // canvas.line(2,2, 4,4)
+    
+    // canvas.line(3,3, 3,6)
+    canvas.line(3,6, 3,3)
+     
+
+    
+    // var rect = canvas.rect(4,4, 22,18);
+    // setInterval(function() {
+    //   rect.move('east');
+    // }, 200);
+    
     // setInterval(function() {
     //   line.move('east');
     // }, 200);
