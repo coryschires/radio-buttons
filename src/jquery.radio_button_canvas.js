@@ -167,56 +167,42 @@
                   
                   var tlX = top_left_x,
                       tlY = top_left_y,
-                      trX = top_left_x,
-                      trY = bottom_right_y,
-                      blX = top_left_x,
-                      blY = bottom_right_y,
                       brX = bottom_right_x,
-                      brY = bottom_right_y
-                    
-                  // var top_side = canvas.line(tlX, tlY, trX, trY)
-                  
-                  // canvas.point(tlX, tlY)
-                  // canvas.point(blX, blY)
-                  
-                  canvas.line(tlX, tlY, blX, blY)
-                  
-                  
-                  // var initialize = function() {
-                  // 
-                  //   var add_point = function(x, y) {
-                  //     points.push([x,y]);
-                  // 
-                  //     var east = x < bottom_right_x && y === top_left_y;
-                  //     var south = x === bottom_right_x && y < bottom_right_y;
-                  //     var west = x > top_left_x && y === bottom_right_y;
-                  //     var north = x === top_left_x && y > top_left_y;
-                  //     
-                  //     if (east) {
-                  //       add_point(x+1, y);
-                  //     } else if (south) {
-                  //       add_point(x, y+1)
-                  //     } else if (west) {
-                  //       add_point(x-1, y)
-                  //     } else if (north) {
-                  //       if ((x, y-1) !== (top_left_x, top_left_y)  && north) {
-                  //         add_point(x, y-1);
-                  //       }
-                  // 
-                  //     }
-                  //   };
-                    
-                    // add_point(top_left_x, top_left_y);
-                    
-                  // }();
+                      brY = bottom_right_y,
+                      trX = bottom_right_x,
+                      trY = top_left_y,
+                      blX = top_left_x,
+                      blY = bottom_right_y
 
-                  // return canvas.shape(points);
+                  var top = canvas.line(tlX, tlY, trX, trY)
+                  var right = canvas.line(trX, trY, brX, brY)
+                  var bottom = canvas.line(brX, brY, blX, blY)
+                  var left = canvas.line(tlX, tlY, blX, blY)
+                  
+                  
+                  // var sides = [top, right, bottom, left];
+
+                  return canvas.shape([top, right, bottom, left]);
                 };
                 
                 
-                canvas.shape = function(points) {
+
+                
+                canvas.shape = function(args) {
                   var self = {};
+                  
                   self.points = [];
+                  
+                  var is_array = function(value) { 
+                    return Object.prototype.toString.apply(value) === '[object Array]';
+                  };
+                  var is_point = function(value) {
+                    return value.hasOwnProperty('x');
+                  };
+                  var is_shape = function(value) {
+                    return value.hasOwnProperty('points');
+                  }
+                  
                   
                   self.move = function(x, y) {
                     $.each(self.points, function(index, point) {
@@ -229,15 +215,33 @@
                   };
                   
                   var initialize = function() {
-                    $.each(points, function(index, coordinate) {
-                      var point = canvas.point(coordinate[0], coordinate[1]);
-                      self.points.push(point);
+
+                    $.each(args, function(index, argument) {
+                      
+                      // when argument is point, add it to points array
+                      if (is_point(argument)) {
+                        self.points.push(argument);
+                      
+                      // when argument is shape, loop thru shape's points and add 
+                      // each to points array
+                      } else if ( is_shape(argument) ) {
+                        $.each(argument.points, function(index, point) {
+                          self.points.push(point);
+                        });
+                      
+                      // otherwise assume argument is an array of coordinates and 
+                      // build new a point
+                      } else {
+                        self.points.push(canvas.point(argument[0], argument[1]));
+                      }
                     });
                   }();
 
 
                   return self;
                 };
+                
+
                 
                 var initialize = function() {
                     var data_y = 1;
@@ -256,8 +260,10 @@
                     }
                     
                 }();
-            
             })
+            
+            
+            
             return canvas;
         }
     })

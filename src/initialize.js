@@ -19,12 +19,15 @@ $(document).ready(function() {
     
     // canvas.line(2,2, 4,4)
     
-    // canvas.line(3,3, 3,6)
-    canvas.line(3,6, 3,3)
-     
-
+    // var line = canvas.line(3,3, 3,6)
     
-    // var rect = canvas.rect(4,4, 22,18);
+    // canvas.shape([line]);
+    
+    // canvas.line(3,6, 3,3)
+    
+    
+    var rect = canvas.rect(2,2, 8,8);
+          console.log(rect.points);
     // setInterval(function() {
     //   rect.move('east');
     // }, 200);
