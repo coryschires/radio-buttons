@@ -162,7 +162,42 @@
                     
                     return self;
                 }
+                
+                canvas.rect = function(top_left_x, top_left_y, bottom_right_x, bottom_right_y) {
+                  var points = [];
+                  
+                  var initialize = function() {
 
+                    var add_point = function(x, y) {
+                      points.push([x,y]);
+
+                      var east = x < bottom_right_x && y === top_left_y;
+                      var south = x === bottom_right_x && y < bottom_right_y;
+                      var west = x > top_left_x && y === bottom_right_y;
+                      var north = x === top_left_x && y > top_left_y;
+                      
+                      if (east) {
+                        add_point(x+1, y);
+                      } else if (south) {
+                        add_point(x, y+1)
+                      } else if (west) {
+                        add_point(x-1, y)
+                      } else if (north) {
+                        if ((x, y-1) !== (top_left_x, top_left_y)  && north) {
+                          add_point(x, y-1);
+                        }
+
+                      }
+                    };
+                    
+                    add_point(top_left_x, top_left_y);
+                    
+                  }();
+
+                  return canvas.shape(points);
+                };
+                
+                
                 canvas.shape = function(points) {
                   var self = {};
                   self.points = [];

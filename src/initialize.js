@@ -14,7 +14,7 @@ $(document).ready(function() {
     // }, 200);
     
     
-    var line = canvas.line(2,2, 8,5);
+    var rect = canvas.rect(2,2, 8,8);
     // setInterval(function() {
     //   line.move('east');
     // }, 200);
