@@ -5,9 +5,9 @@ $(document).ready(function() {
         height: 347
     });
     
-    // var shape = canvas.shape([ 
-    //   [2,2], [3,2], [3,3], [4,3] 
-    // ]);
+    var shape = canvas.shape(
+      [2,2], [3,2], [3,3], [4,3] 
+    );
     // 
     // setInterval(function() {
     //   shape.move('south');
@@ -26,8 +26,10 @@ $(document).ready(function() {
     // canvas.line(3,6, 3,3)
     
     
-    var rect = canvas.rect(2,2, 8,8);
-          console.log(rect.points);
+    // var rect = canvas.rect(2,2, 8,8);
+    //       console.log(rect.points);
+
+
     // setInterval(function() {
     //   rect.move('east');
     // }, 200);

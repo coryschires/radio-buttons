@@ -77,7 +77,8 @@
                       plot_line(x1, y1, calculate_slope());
                     }();
                     
-                    return canvas.shape(points);
+                    return canvas.shape.apply(this, points)
+                    // return canvas.shape(points);
                 }
                 canvas.point = function(x, y) {
                     var self = {}, cache;
@@ -119,7 +120,7 @@
                         
                         return canvas.point(neighbor.x, neighbor.y).uncheck();
                     };
-            
+                    
                     self.neighbors = function() {
                         return {
                             primary: {
@@ -161,48 +162,29 @@
                     
                     return self;
                 }
-                
-                canvas.rect = function(top_left_x, top_left_y, bottom_right_x, bottom_right_y) {
-                  var points = [];
+                canvas.rect = function(tlX, tlY, brX, brY) {
                   
-                  var tlX = top_left_x,
-                      tlY = top_left_y,
-                      brX = bottom_right_x,
-                      brY = bottom_right_y,
-                      trX = bottom_right_x,
-                      trY = top_left_y,
-                      blX = top_left_x,
-                      blY = bottom_right_y
+                  var trX = brX, trY = tlY, blX = tlX, blY = brY;
 
                   var top = canvas.line(tlX, tlY, trX, trY)
                   var right = canvas.line(trX, trY, brX, brY)
                   var bottom = canvas.line(brX, brY, blX, blY)
                   var left = canvas.line(tlX, tlY, blX, blY)
                   
-                  
-                  // var sides = [top, right, bottom, left];
-
-                  return canvas.shape([top, right, bottom, left]);
+                  return canvas.shape.apply(this, [top, right, bottom, left])
                 };
                 
-                
-
-                
-                canvas.shape = function(args) {
+                canvas.shape = function() {
                   var self = {};
-                  
+                  var args = $.makeArray(arguments);
                   self.points = [];
                   
-                  var is_array = function(value) { 
-                    return Object.prototype.toString.apply(value) === '[object Array]';
-                  };
                   var is_point = function(value) {
                     return value.hasOwnProperty('x');
                   };
                   var is_shape = function(value) {
                     return value.hasOwnProperty('points');
-                  }
-                  
+                  };
                   
                   self.move = function(x, y) {
                     $.each(self.points, function(index, point) {
