@@ -8,7 +8,7 @@ All tightly packed together, you can think of the buttons as pixels which you ca
 
 I'm working on a basic API which makes creating your own radio-button projects quite a bit easier. It's still pretty rough and minimally-featured. Any contributions would be great, so feel free to fork it and mess around.
 
-<em>Note: This plugin is still being actively developed. The API will almost certainly change rapidly and without notice. I wouldn't recommend using it for anything important -- though I'm not even sure thats possible.</em>
+<em>Note: This plugin is still being actively developed. The API will almost certainly change rapidly and without notice. I wouldn't recommend using it for anything important -- though I'm not even sure that's possible.</em>
 
 == Getting started.
 
