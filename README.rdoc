@@ -123,12 +123,24 @@ Like lines, the <tt>rectangle</tt> function returns a shape object allowing you 
 Shapes are the hardest working and most flexible objects on the canvas. You can create a shape simply by specifying the constituent points as arrays of coordinates:
 
     var face = canvas.shape(
-      [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
+        [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
     );
 
 And you'll get:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/face.png
+
+But specifying every single coordinate can be a bit onerous. So you can also compose shapes form other shape objects -- like lines, rectangle, or other shapes. For example, let's add a few more points to our face:
+
+  var happy_man = canvas.shape(
+      face,                       // the shape we just created above
+      canvas.point(3,6),          // notice you can pass point objects too
+      [3,7], [4,6], [5,6], [5,7]  // and you can pass coordinates as before
+  );
+
+And you get this exciting fellow:
+
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/happy_man.png
 
 I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the {unit tests}[https://github.com/coryschires/radio-buttons/tree/master/spec]. They do a fairly good job specifying the code.
 
