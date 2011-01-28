@@ -142,9 +142,9 @@ And you get this exciting fellow:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/happy_man.png
 
-Using the <tt>points</tt> function, you can easily get an array of all the points that constitute a shape:
+Using the <tt>points</tt> property, you can easily get an array of all the points that constitute a shape:
 
-  happy_man.points(); // returns a bunch of point objects
+  happy_man.points; // returns a bunch of point objects
 
 You can also call <tt>move</tt> on a shape which takes the same arguments as the point <tt>move</tt> function described above:
 
