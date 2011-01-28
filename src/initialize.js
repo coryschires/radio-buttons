@@ -5,10 +5,9 @@ $(document).ready(function() {
         height: 347
     });
     
-    // var shape = canvas.shape(
-    //   [2,2], [3,2], [3,3], [4,3], 
-    //   canvas.line(4,10, 8,6)
-    // );
+    var face = canvas.shape(
+      [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
+    );
     
     // canvas.point(2,2); // left eye
     // canvas.point(6,2); // right eye
@@ -37,7 +36,7 @@ $(document).ready(function() {
     // canvas.line(3,6, 3,3)
     
     
-    var rect = canvas.rectangle(2,2, 8,6);
+    // var rect = canvas.rectangle(2,2, 8,6);
     //       console.log(rect.points);
 
 

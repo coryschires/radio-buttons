@@ -1,6 +1,6 @@
 = Radio Buttons Canvas
 
-Radio Button Canvas is an unusual (and totally useless) jQuery plug that creates a matrix of radio buttons. A blank canvas looks like this: 
+Radio Button Canvas is an unusual (and totally useless) jQuery plugin that creates a matrix of radio buttons. A blank canvas looks like this: 
 
 http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/blank.png
 
@@ -97,7 +97,7 @@ Create a line by specifying the start and end point:
  
 Lines, like most canned shape functions, return a <tt>shape</tt> object. This gives lines both a <tt>points</tt> and <tt>move</tt> function. Check out the shapes section below for more to see how you can use these functions on lines.
 
-Do keep in mind, however, that the radio button canvas is, well, low resolution. This means that lines with gentle slopes don't work so well. For example:
+Do keep in mind, however, that the radio button canvas is, well, low resolution. This means that lines short lines with gentle slopes don't work so well. For example:
 
     canvas.line(2,2, 8,3);
     
@@ -120,6 +120,15 @@ Like lines, the <tt>rectangle</tt> function returns a shape object allowing you 
 
 == Shapes.
 
+Shapes are the hardest working and most flexible objects on the canvas. You can create a shape simply by specifying the constituent points as arrays of coordinates:
+
+    var face = canvas.shape(
+      [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
+    );
+
+And you'll get:
+
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/face.png
 
 I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the {unit tests}[https://github.com/coryschires/radio-buttons/tree/master/spec]. They do a fairly good job specifying the code.
 
