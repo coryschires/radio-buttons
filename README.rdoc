@@ -148,7 +148,7 @@ Using the <tt>points</tt> function, you can easily get an array of all the point
 
 You can also call <tt>move</tt> on a shape which takes the same arguments as the point <tt>move</tt> function described above:
 
-  happy_man.move('north'); // move one step north and returns self
+  happy_man.move('north'); // moves one step north and returns self
   
 And then things get totally awesome:
   
