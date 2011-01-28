@@ -78,7 +78,6 @@
                     }();
                     
                     return canvas.shape.apply(this, points)
-                    // return canvas.shape(points);
                 }
                 canvas.point = function(x, y) {
                     var self = {}, cache;

@@ -91,6 +91,23 @@ Under the hood, in fact, <tt>move</tt> uses <tt>neighbor</tt> to do the heavy li
 
 == Lines.
 
+Create a line by specifying the start and end point:
+
+    canvas.line(2,2, 8,5); // arguments => x1, y1, x2, y2
+ 
+Lines, like most canned shape functions, return a <tt>shape</tt> object. This gives lines both a <tt>points</tt> and <tt>move</tt> function. Check out the shapes section below.
+
+Do keep in mind, however, that the radio button canvas is, well, low resolution. This means that lines with gentle slopes don't work so well. For example:
+
+    canvas.line(2,2, 8,3);
+    
+Creates a pretty pathetic line:
+
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/bad_line.png
+
+
+
+
 I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the unit tests. They do a fairly good job specifying the code.
 
 
