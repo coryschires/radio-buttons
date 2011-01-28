@@ -163,7 +163,7 @@ And then things get totally awesome:
     party_time();
   }, 300);
 
-http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/party_time.png
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/party_time.gif
 
 
 == Ongoing progress.
