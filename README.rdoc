@@ -106,9 +106,22 @@ Creates a pretty pathetic line:
 http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/bad_line.png
 
 
+== Rectangles
+
+Create a rectangle by specifying the coordinates for the top left point and the bottom right point:
+
+    var rectangle = canvas.rectangle(2,2, 8,6); // arguments => tlX, tlY, brX, brY
+
+Which creates:
+
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/rectangle.png
+
+Like lines, the <tt>rectangle</tt> function returns a shape object allowing you to call any methods generally available to shapes. For details, see the shapes section below.
+
+== Shapes.
 
 
-I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the unit tests. They do a fairly good job specifying the code.
+I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the {unit tests}[https://github.com/coryschires/radio-buttons/tree/master/spec]. They do a fairly good job specifying the code.
 
 
 

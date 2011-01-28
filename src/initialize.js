@@ -25,7 +25,7 @@ $(document).ready(function() {
     
     // draw a face
 
-    canvas.line(2,2, 8,3)
+    // canvas.line(2,2, 8,3);
     
     
     // canvas.line(2,2, 4,4)
@@ -37,7 +37,7 @@ $(document).ready(function() {
     // canvas.line(3,6, 3,3)
     
     
-    // var rect = canvas.rect(2,2, 8,8);
+    var rect = canvas.rectangle(2,2, 8,6);
     //       console.log(rect.points);
 
 

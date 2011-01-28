@@ -18,7 +18,7 @@
             height: $(window).height()
         }
     }
-
+    
     $.fn.extend({
         radio_button_canvas: function(config) {
             
@@ -26,7 +26,7 @@
             var canvas = {};
             
             this.each(function() {
-
+              
                 canvas.self = $(this);
                 canvas.width = function() {
                     return Math.floor(config.width / 12);
@@ -161,8 +161,7 @@
                     
                     return self;
                 }
-                canvas.rect = function(tlX, tlY, brX, brY) {
-                  
+                canvas.rectangle = function(tlX, tlY, brX, brY) {
                   var trX = brX, trY = tlY, blX = tlX, blY = brY;
 
                   var top = canvas.line(tlX, tlY, trX, trY)
@@ -172,7 +171,6 @@
                   
                   return canvas.shape.apply(this, [top, right, bottom, left])
                 };
-                
                 canvas.shape = function() {
                   var self = {};
                   var args = $.makeArray(arguments);

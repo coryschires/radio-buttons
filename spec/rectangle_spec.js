@@ -8,11 +8,10 @@ describe("radio_button_canvas rectangle functions", function() {
   
   describe("rectangle", function() {
     beforeEach(function() {
-      rectangle = canvas.rect(2,2, 8,8);
+      rectangle = canvas.rectangle(2,2, 8,8);
     });
     
     it("should check the top side of the rectange", function() {
-
       expect(rectangle.points).toContainPointWithCoordinates(2,2);
       expect(rectangle.points).toContainPointWithCoordinates(3,2);
       expect(rectangle.points).toContainPointWithCoordinates(4,2);
