@@ -95,7 +95,7 @@ Create a line by specifying the start and end point:
 
     canvas.line(2,2, 8,5); // arguments => x1, y1, x2, y2
  
-Lines, like most canned shape functions, return a <tt>shape</tt> object. This gives lines both a <tt>points</tt> and <tt>move</tt> function. Check out the shapes section below.
+Lines, like most canned shape functions, return a <tt>shape</tt> object. This gives lines both a <tt>points</tt> and <tt>move</tt> function. Check out the shapes section below for more to see how you can use these functions on lines.
 
 Do keep in mind, however, that the radio button canvas is, well, low resolution. This means that lines with gentle slopes don't work so well. For example:
 
