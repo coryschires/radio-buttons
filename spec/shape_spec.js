@@ -6,8 +6,54 @@ describe("radio_button_canvas shape functions", function() {
     canvas = $('<div>').radio_button_canvas();
   });
   
-  // describe("private initialize method", function() {
-  // });
+  describe("private initialize method", function() {
+    it("accept points", function() {
+      shape = canvas.shape(canvas.point(2,2));
+      expect(shape.points).toContainPointWithCoordinates(2,2);
+    });
+    it("accept an array of coordinates", function() {
+      shape = canvas.shape([2,2]);
+      expect(shape.points).toContainPointWithCoordinates(2,2);
+    });
+    it("should accept other shapes", function() {
+      shape = canvas.shape(canvas.line(2,2, 4,4));
+      expect(shape.points).toContainPointWithCoordinates(2,2);
+      expect(shape.points).toContainPointWithCoordinates(3,3);
+      expect(shape.points).toContainPointWithCoordinates(4,4);
+    });
+    it("should accept shapes mixed with points", function() {
+      var line = canvas.line(2,2, 4,4);
+      var point = canvas.point(4,5)
+      shape = canvas.shape(line, point);
+      expect(shape.points).toContainPointWithCoordinates(2,2);
+      expect(shape.points).toContainPointWithCoordinates(3,3);
+      expect(shape.points).toContainPointWithCoordinates(4,4);
+      expect(shape.points).toContainPointWithCoordinates(4,5);
+    });
+    it("should accept shapes mixed with coordinates", function() {
+      var line = canvas.line(2,2, 4,4);
+      shape = canvas.shape(line, [4,5]);
+      expect(shape.points).toContainPointWithCoordinates(2,2);
+      expect(shape.points).toContainPointWithCoordinates(3,3);
+      expect(shape.points).toContainPointWithCoordinates(4,4);
+      expect(shape.points).toContainPointWithCoordinates(4,5);
+    });
+    it("should accept points mixed with coordinates", function() {
+      shape = canvas.shape([2,2], canvas.point(3,3));
+      expect(shape.points).toContainPointWithCoordinates(2,2);
+      expect(shape.points).toContainPointWithCoordinates(3,3);
+    });
+    it("should accept shapes, points, and coordinates all mixed together", function() {
+      var line = canvas.line(2,2, 4,4);
+      var point = canvas.point(8,9);
+      shape = canvas.shape(line, point, [11,2]);
+      expect(shape.points).toContainPointWithCoordinates(2,2);
+      expect(shape.points).toContainPointWithCoordinates(3,3);
+      expect(shape.points).toContainPointWithCoordinates(4,4);
+      expect(shape.points).toContainPointWithCoordinates(8,9);
+      expect(shape.points).toContainPointWithCoordinates(11,2);
+    });
+  });
   
   describe("shape#points", function() {
     it("return an array containing all the points that constitute the shape", function() {

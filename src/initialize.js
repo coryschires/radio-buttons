@@ -6,12 +6,13 @@ $(document).ready(function() {
     });
     
     var shape = canvas.shape(
-      [2,2], [3,2], [3,3], [4,3] 
+      [2,2], [3,2], [3,3], [4,3], 
+      canvas.line(4,10, 8,6)
     );
-    // 
-    // setInterval(function() {
-    //   shape.move('south');
-    // }, 200);
+
+    setInterval(function() {
+      shape.move('south');
+    }, 200);
     
 
     // canvas.line(4,10, 8,6)
