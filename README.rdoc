@@ -163,4 +163,9 @@ And then things get totally awesome:
     party_time();
   }, 300);
 
+http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/party_time.png
+
+
+== Ongoing progress.
+
 I'll still improving the API, adding new shapes, etc. If you need a more in depth explanation of the existing objects, check out the {unit tests}[https://github.com/coryschires/radio-buttons/tree/master/spec]. They do a fairly good job specifying the code.

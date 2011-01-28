@@ -16,16 +16,16 @@ $(document).ready(function() {
     );
     
     
-    var party_time = function() {
+    // var party_time = function() {
       happy_man.move('south');
-      setTimeout(function() {
-        happy_man.move('north');
-      }, 100);
-    }
-    
-    setInterval(function() {
-      party_time();
-    }, 300);
+    //   setTimeout(function() {
+    //     happy_man.move('north');
+    //   }, 100);
+    // }
+    // 
+    // setInterval(function() {
+    //   party_time();
+    // }, 300);
     
 
     
