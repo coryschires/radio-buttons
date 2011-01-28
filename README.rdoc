@@ -97,7 +97,7 @@ Create a line by specifying the start and end point:
  
 Lines, like most canned shape functions, return a <tt>shape</tt> object. This gives lines both a <tt>points</tt> and <tt>move</tt> function. Check out the shapes section below for more to see how you can use these functions on lines.
 
-Do keep in mind, however, that the radio button canvas is, well, low resolution. This means that lines short lines with gentle slopes don't work so well. For example:
+Do keep in mind, however, that the radio button canvas is, well, low resolution. This means that short lines with gentle slopes don't work so well. For example:
 
     canvas.line(2,2, 8,3);
     
@@ -123,7 +123,7 @@ Like lines, the <tt>rectangle</tt> function returns a shape object allowing you 
 Shapes are the hardest working and most flexible objects on the canvas. You can create a shape simply by specifying the constituent points as arrays of coordinates:
 
     var face = canvas.shape(
-        [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
+      [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
     );
 
 And you'll get:
@@ -133,9 +133,9 @@ http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/face.pn
 But specifying every single coordinate can be a bit onerous. So you can also compose shapes form other shape objects -- like lines, rectangle, or other shapes. For example, let's add a few more points to our face:
 
   var happy_man = canvas.shape(
-      face,                       // the shape we just created above
-      canvas.point(3,6),          // notice you can pass point objects too
-      [3,7], [4,6], [5,6], [5,7]  // and you can pass coordinates as before
+    face,                       // the shape we just created above
+    canvas.point(3,6),          // notice you can pass point objects too
+    [3,7], [4,6], [5,6], [5,7]  // and you can pass coordinates as before
   );
 
 And you get this exciting fellow:
