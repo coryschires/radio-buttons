@@ -5,15 +5,25 @@ $(document).ready(function() {
         height: 347
     });
     
-    var shape = canvas.shape(
-      [2,2], [3,2], [3,3], [4,3], 
-      canvas.line(4,10, 8,6)
-    );
-
-    setInterval(function() {
-      shape.move('south');
-    }, 200);
+    // var shape = canvas.shape(
+    //   [2,2], [3,2], [3,3], [4,3], 
+    //   canvas.line(4,10, 8,6)
+    // );
     
+    canvas.point(2,2); // left eye
+    canvas.point(6,2); // right eye
+    canvas.point(4,4); // nose
+    canvas.point(2,6); // mouth
+    canvas.point(3,6); // mouth
+    canvas.point(4,6); // mouth
+    canvas.point(5,6); // mouth
+    canvas.point(6,6); // mouth
+
+    // setInterval(function() {
+    //   shape.move('south');
+    // }, 200);
+    
+    // draw a face
 
     // canvas.line(4,10, 8,6)
     

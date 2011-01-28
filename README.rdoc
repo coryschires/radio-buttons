@@ -57,8 +57,43 @@ All shapes, such as lines, return an object which contains the array of points t
       line.move('east');
     }, 200);
 
+There's the basic idea. Now let's look more closely at the API.
 
-== How to use the API.
+== Points.
+
+Create a point by specifying an <tt>x</tt> and <tt>y</tt>:
+    
+    var point = canvas.point(5,5); // arguments => x, y
+
+When initialized, a point comes checked by default. Here are some basic methods for checking and unchecking points:
+
+    point.check();          // returns self
+    point.uncheck();        // returns self
+    point.is_checked();     // returns boolean
+
+You can find other points relative to an existing point using the <tt>neighbor</tt> function:
+    
+    // using ordinal coordinates
+    point.neighbor('north');
+    point.neighbor('south');
+    point.neighbor('east');
+    point.neighbor('west');
+    
+    // using cartesian coordinates 
+    point.neighbor(0, -2);  // returns point two north
+    point.neighbor(1, 2);   // returns point two south and one east
+    
+The <tt>neighbor</tt> function returns the neighboring point.
+
+Finally points have a <tt>move</tt> function. This takes the same arguments as the <tt>neighbor</tt> function:
+
+    point.neighbor('north'); // moves the point up one
+
+Under the hood, in fact, <tt>move</tt> uses <tt>neighbor</tt> to do the heavy lifting. Unlike <tt>neighbor</tt>, however, <tt>move</tt> unchecks the current point before moving to a new location.
+
+== Lines.
 
 I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the unit tests. They do a fairly good job specifying the code.
+
+
 

@@ -99,7 +99,7 @@
                         return cache.attr('checked') == true;
                     };
                     self.move = function(x, y) {
-                        return self.uncheck().neighbor(x, y).check();
+                        return self.uncheck().neighbor(x, y);
                     };
                     
                     self.neighbor = function(x, y) {
@@ -118,7 +118,7 @@
                         // but default to more powerful cartesian coordinates
                         else { neighbor.x += x; neighbor.y += y; }
                         
-                        return canvas.point(neighbor.x, neighbor.y).uncheck();
+                        return canvas.point(neighbor.x, neighbor.y);
                     };
                     
                     self.neighbors = function() {

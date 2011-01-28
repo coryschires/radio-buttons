@@ -71,9 +71,9 @@ describe("radio_button_canvas point functions", function() {
       expect(point.x).toEqual(1);
       expect(point.y).toEqual(3);
     });
-    it("should not check the neighboring point", function() {
+    it("should check the neighboring point", function() {
       var point = canvas.point(3,3).neighbor('west');
-      expect(point.is_checked()).toBe(false)
+      expect(point.is_checked()).toBe(true)
     });
   });
   
