@@ -15,6 +15,21 @@ $(document).ready(function() {
         [3,7], [4,6], [5,6], [5,7]  // and you can pass coordinates as before
     );
     
+    
+    var party_time = function() {
+      happy_man.move('south');
+      setTimeout(function() {
+        happy_man.move('north');
+      }, 100);
+    }
+    
+    setInterval(function() {
+      party_time();
+    }, 300);
+    
+
+    
+    
     // canvas.point(2,2); // left eye
     // canvas.point(6,2); // right eye
     // canvas.point(4,4); // nose

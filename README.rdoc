@@ -142,7 +142,25 @@ And you get this exciting fellow:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/happy_man.png
 
-I'll be improving this section as I continue to develop the API. If you're really eager to see how things work, I'd suggest having a look at the {unit tests}[https://github.com/coryschires/radio-buttons/tree/master/spec]. They do a fairly good job specifying the code.
+Using the <tt>points</tt> function, you can easily get an array of all the points that constitute a shape:
 
+  happy_man.points(); // returns a bunch of point objects
 
+You can also call <tt>move</tt> on a shape which takes the same arguments as the point <tt>move</tt> function described above:
 
+  happy_man.move(north); // move one step north and returns self
+  
+And then things get totally awesome:
+  
+  var party_time = function() {
+    happy_man.move('south');
+    setTimeout(function() {
+      happy_man.move('north');
+    }, 100);
+  }
+  
+  setInterval(function() {
+    party_time();
+  }, 300);
+
+I'll still improving the API, adding new shapes, etc. If you need a more in depth explanation of the existing objects, check out the {unit tests}[https://github.com/coryschires/radio-buttons/tree/master/spec]. They do a fairly good job specifying the code.
