@@ -74,7 +74,7 @@ When initialized, a point comes checked by default. Here are some basic methods 
 You can find other points relative to an existing point using the <tt>neighbor</tt> function:
     
     // using ordinal coordinates
-    point.neighbor('north');
+    point.neighbor('north'); // always returns neighboring point
     point.neighbor('south');
     point.neighbor('east');
     point.neighbor('west');
@@ -82,8 +82,6 @@ You can find other points relative to an existing point using the <tt>neighbor</
     // using cartesian coordinates 
     point.neighbor(0, -2);  // returns point two north
     point.neighbor(1, 2);   // returns point two south and one east
-    
-The <tt>neighbor</tt> function returns the neighboring point.
 
 Finally points have a <tt>move</tt> function. This takes the same arguments as the <tt>neighbor</tt> function:
 
