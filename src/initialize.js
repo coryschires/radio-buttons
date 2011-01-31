@@ -5,19 +5,25 @@ $(document).ready(function() {
         height: 347
     });
     
-    var face = canvas.shape(
-      [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
-    );
+    // var face = canvas.shape(
+    //   [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
+    // );
     
-    var happy_man = canvas.shape(
-        face,                       // the shape we just created above
-        canvas.point(3,6),          // notice you can pass point objects too
-        [3,7], [4,6], [5,6], [5,7]  // and you can pass coordinates as before
-    );
+    // var happy_man = canvas.shape(
+    //     face,                       // the shape we just created above
+    //     canvas.point(3,6),          // notice you can pass point objects too
+    //     [3,7], [4,6], [5,6], [5,7]  // and you can pass coordinates as before
+    // );
     
+    
+    // var poly = canvas.polygon(
+    //   [2,4], [6,2], [8,6], [6,8]
+    // );
+
+    polygon = canvas.polygon([3,4], [7,2], [7,8]);
     
     // var party_time = function() {
-      happy_man.move('south');
+      // happy_man.move('south');
     //   setTimeout(function() {
     //     happy_man.move('north');
     //   }, 100);

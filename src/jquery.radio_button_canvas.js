@@ -77,7 +77,7 @@
                       plot_line(x1, y1, calculate_slope());
                     }();
                     
-                    return canvas.shape.apply(this, points)
+                    return canvas.shape.apply(this, points);
                 }
                 canvas.point = function(x, y) {
                     var self = {}, cache;
@@ -220,6 +220,23 @@
                   return self;
                 };
                 
+                
+                canvas.polygon = function() {
+                  var args = $.makeArray(arguments);
+                  var sides = [];
+                  
+                  $.each(args, function(index, coordinate) {
+                    var start_point = coordinate;
+                    var end_point = index === (args.length -1) ? args[0] : args[index+1];
+                    
+                    var line = canvas.line(
+                      start_point[0], start_point[1], end_point[0], end_point[1]
+                    );
+                    sides.push(line);
+                  });
+                  
+                  return canvas.shape.apply(this, sides);
+                }
 
                 
                 var initialize = function() {
