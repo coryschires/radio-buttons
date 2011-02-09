@@ -26,7 +26,7 @@
             var canvas = {};
             
             this.each(function() {
-              
+                
                 canvas.self = $(this);
                 canvas.width = function() {
                     return Math.floor(config.width / 12);
@@ -120,41 +120,6 @@
                         return canvas.point(neighbor.x, neighbor.y);
                     };
                     
-                    self.neighbors = function() {
-                        return {
-                            primary: {
-                                'north': self.neighbor('north'),
-                                'south': self.neighbor('south'),
-                                'east': self.neighbor('east'),
-                                'west': self.neighbor('west')
-                            },
-                            secondary: {
-                                'north': self.neighbor(0, -2),
-                                'south': self.neighbor(0, 2),
-                                'east': self.neighbor(2, 0),
-                                'west': self.neighbor(-2, 0),
-                                'northeast': self.neighbor('northeast'),
-                                'southeast': self.neighbor('southeast'),
-                                'southwest': self.neighbor('southwest'),
-                                'northwest': self.neighbor('northwest')
-                            },
-                            tertiary: {
-                                'north': self.neighbor(0, -3),
-                                'south': self.neighbor(0, 3),
-                                'east': self.neighbor(3, 0),
-                                'west': self.neighbor(-3, 0),
-                                'north_northeast': self.neighbor(1, -2),
-                                'north_northweat': self.neighbor(-1, -2),
-                                'south_southeast': self.neighbor(1, 2),
-                                'north_southwest': self.neighbor(-1, 2),
-                                'east_northeast': self.neighbor(2, -1),
-                                'east_southeast': self.neighbor(2, 1),
-                                'west_northeast': self.neighbor(-2, -1),
-                                'west_southeast': self.neighbor(-2, 1)
-                            }
-                        };
-                    };
-                    
                     var initialize = function() {
                       self.check();
                     }();
@@ -216,11 +181,8 @@
                     });
                   }();
 
-
                   return self;
                 };
-                
-                
                 canvas.polygon = function() {
                   var args = $.makeArray(arguments);
                   var sides = [];
@@ -238,7 +200,6 @@
                   return canvas.shape.apply(this, sides);
                 }
 
-                
                 var initialize = function() {
                     var data_y = 1;
                     var data_x = 1;

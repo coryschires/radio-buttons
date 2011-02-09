@@ -1,9 +1,7 @@
 $(document).ready(function() {
 
-    var canvas = $('#canvas').radio_button_canvas({
-        width: 507,
-        height: 347
-    });
+    var canvas = $('#canvas').radio_button_canvas();
+    canvas.draw(snake);
     
     // var face = canvas.shape(
     //   [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
@@ -20,7 +18,7 @@ $(document).ready(function() {
     //   [2,4], [6,2], [8,6], [6,8]
     // );
 
-    polygon = canvas.polygon([3,4], [7,2], [7,8]);
+    // polygon = canvas.polygon([3,4], [7,2], [7,8]);
     
     // var party_time = function() {
       // happy_man.move('south');

@@ -2,3 +2,5 @@
 .livereload
 .rvmrc
 -/
+*.psd
+*.png

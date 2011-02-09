@@ -6,6 +6,12 @@ describe("radio_button_canvas polygon functions", function() {
     canvas = $('<div>').radio_button_canvas();
   });
   
+  describe("private initialize method", function() {
+    it("should accept points as well as coordinates", function() {
+      
+    });
+  });
+  
   describe("three sided polygon", function() {
     beforeEach(function() {
       polygon = canvas.polygon([3,4], [7,2], [7,8]);
