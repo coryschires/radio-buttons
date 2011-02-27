@@ -53,6 +53,19 @@ describe("radio_button_canvas shape functions", function() {
       expect(shape.points).toContainPointWithCoordinates(8,9);
       expect(shape.points).toContainPointWithCoordinates(11,2);
     });
+    it("should silently ignore invalid arguments - empty array", function() {
+      shape = canvas.shape([2,2], [3,2], [3,3], []);
+      expect(shape.points.length).toEqual(3);
+    });
+    it("should silently ignore invalid arguments - invalid coordinate", function() {
+      shape = canvas.shape([2,2], [3,2], [2,2,2]);
+      expect(shape.points.length).toEqual(2);
+    });
+    it("should accept shapes mixed with invalid arguments", function() {
+      var existing_shape = canvas.shape([2,2], [3,2]);
+      shape = canvas.shape([], existing_shape)
+      expect(shape.points.length).toEqual(2);
+    });
   });
   
   describe("shape#points", function() {
@@ -61,6 +74,24 @@ describe("radio_button_canvas shape functions", function() {
       expect(shape.points).toContainPointWithCoordinates(2,2);
       expect(shape.points).toContainPointWithCoordinates(3,2);
       expect(shape.points).toContainPointWithCoordinates(3,3);
+    });
+  });
+  
+  describe("shape#uncheck()", function() {
+    it("uncheck all the points contained in the shape", function() {
+      shape = canvas.shape([2,2], [3,2], [3,3]).uncheck();
+      expect(canvas).not.toHaveCoordinateChecked(2,2);
+      expect(canvas).not.toHaveCoordinateChecked(3,2);
+      expect(canvas).not.toHaveCoordinateChecked(3,3);
+    });
+  });
+  
+  describe("shape#check()", function() {
+    it("checks all the points contained in the shape", function() {
+      shape = canvas.shape([2,2], [3,2], [3,3]).uncheck().check();
+      expect(canvas).toHaveCoordinateChecked(2,2);
+      expect(canvas).toHaveCoordinateChecked(3,2);
+      expect(canvas).toHaveCoordinateChecked(3,3);
     });
   });
   

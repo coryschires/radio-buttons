@@ -71,6 +71,10 @@ When initialized, a point comes checked by default. Here are some basic methods 
     point.uncheck();        // returns self
     point.is_checked();     // returns boolean
 
+It sometimes be convenient to fetch a point's coordinates. You can do that using the <tt>coordinates</tt> function:
+
+    canvas.point(3,5).coordinates();      // returns [3,5]
+
 You can find other points relative to an existing point using the <tt>neighbor</tt> function:
     
     // using ordinal coordinates
@@ -120,12 +124,12 @@ Like lines, the <tt>rectangle</tt> function returns a shape object allowing you 
 
 == Polygons.
 
-The <tt>polygon</tt> function provides an easy way to create various such triangles, diamonds, and so on. Make a polygon by specifying in the vertices as arrays of coordinates:
+The <tt>polygon</tt> function provides an easy way to create various such triangles, diamonds, and so on. Make a polygon by specifying the vertices as either arrays of coordinates or points:
 
     var polygon = canvas.polygon(
-      [2,4], [6,2], [8,6], [6,8]
+      [2,4], [6,2], [8,6], point(6,8)
     );
-    
+
 Which creates:
 
 http://coryschires-blog-post-images.s3.amazonaws.com/radio_button_canvas/polygon.png
@@ -186,5 +190,6 @@ I'll still improving the API, adding new shapes, etc. If you need a more in dept
 * Shapes can currently have redundant points. That should not be allowed.
 * Add .fill() / .unfill(); methods to shapes class.
 * Finish demo page
+* Should lines and rectangles be able to accept points are arguments? Currently they can only accept <tt>x</tt> and <tt>y</tt> coordinates.
 
 

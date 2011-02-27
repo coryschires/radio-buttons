@@ -1,87 +1,69 @@
 $(document).ready(function() {
 
-    var canvas = $('#canvas').radio_button_canvas();
-    canvas.draw(snake);
+    var canvas = $('#canvas').radio_button_canvas({
+      width: 220,   // 18 buttons
+      height: 500   // 36 buttons
+    });
     
-    // var face = canvas.shape(
-    //   [3,2], [4,3], [5,2], [2,4], [6,4], [3,5], [4,5], [5,5]
-    // );
-    
-    // var happy_man = canvas.shape(
-    //     face,                       // the shape we just created above
-    //     canvas.point(3,6),          // notice you can pass point objects too
-    //     [3,7], [4,6], [5,6], [5,7]  // and you can pass coordinates as before
-    // );
-    
-    
-    // var poly = canvas.polygon(
-    //   [2,4], [6,2], [8,6], [6,8]
-    // );
+    var tetris = function(canvas) {
+      var board = { 
+        height: 36, 
+        width: 18 
+      };
+      
+      var block_types = {
+        pipe: [[7,1], [8,1], [9,1], [10,1], [11,1], [12,1]],
+        square: [[9,1], [9,2], [10,1], [10,2]],
+        backwards_z: [[9,1], [9,2], [10,2], [10,3]],
+        forwards_z: [[9,2], [9,3], [10,1], [10,2]],
+        triangle: [[10,1], [9,2], [10,2], [11,2]]
+      };
+      
+      var block_builder = function() {
+        var block = canvas.shape.apply(this, block_types.square);
 
-    // polygon = canvas.polygon([3,4], [7,2], [7,8]);
-    
-    // var party_time = function() {
-      // happy_man.move('south');
-    //   setTimeout(function() {
-    //     happy_man.move('north');
-    //   }, 100);
-    // }
-    // 
-    // setInterval(function() {
-    //   party_time();
-    // }, 300);
-    
+        block.lowest_point = function() {
+          return block.points.map(function(b) { return b.y; }).sort().pop();
+        };
+        block.active = function() {
+          return board.height > block.lowest_point();
+        }
+        
+        return block;
+      }
+      
+      
+      
+      var block_pile = function() {
+        var self = canvas.shape.apply(this, $.makeArray(arguments));
+        
+        // self.points = [];
+        
+        // self.add_points = function(block) {
+        //   self.points = canvas.shape(self.points, block).points;
+        // };
+        
+        return self;
+      }
 
-    
-    
-    // canvas.point(2,2); // left eye
-    // canvas.point(6,2); // right eye
-    // canvas.point(4,4); // nose
-    // canvas.point(2,6); // mouth
-    // canvas.point(3,6); // mouth
-    // canvas.point(4,6); // mouth
-    // canvas.point(5,6); // mouth
-    // canvas.point(6,6); // mouth
+      // initialize objects
+      var block = block_builder();
+      var pile = {};
+      
+      // loop for game logic
+      setInterval(function() {
 
-    // setInterval(function() {
-    //   shape.move('south');
-    // }, 200);
-    
-    // draw a face
+        if ( block.active() ) {
+            block.move('south');
+        } else {
+          pile = block_pile(block, pile);
+          console.log(pile);
+          block = block_builder();
+        }
+      }, 250);
+      
+    }; // end to tetris function
 
-    // canvas.line(2,2, 8,3);
+    canvas.draw(tetris);
     
-    
-    // canvas.line(2,2, 4,4)
-    
-    // var line = canvas.line(3,3, 3,6)
-    
-    // canvas.shape([line]);
-    
-    // canvas.line(3,6, 3,3)
-    
-    
-    // var rect = canvas.rectangle(2,2, 8,6);
-    //       console.log(rect.points);
-
-
-    // setInterval(function() {
-    //   rect.move('east');
-    // }, 200);
-    
-    // setInterval(function() {
-    //   line.move('east');
-    // }, 200);
- 
-    // canvas.draw(snake);
-    
-    // $('select').change(function() {
-    //     var selection = $(this).val();
-    // 
-    //     if (selection === "rain") {
-    //         matrix.draw(rain_drops);
-    //     } else {
-    //         canvas.draw(snake);
-    //     }
-    // });
 });

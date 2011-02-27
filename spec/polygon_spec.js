@@ -7,8 +7,25 @@ describe("radio_button_canvas polygon functions", function() {
   });
   
   describe("private initialize method", function() {
+    beforeEach(function() {
+      polygon = canvas.polygon(
+        [3,4], canvas.point(7,2), [7,8]
+      );
+    });
     it("should accept points as well as coordinates", function() {
-      
+      expect(polygon.points).toContainPointWithCoordinates(3,4);
+      expect(polygon.points).toContainPointWithCoordinates(5,3);
+      expect(polygon.points).toContainPointWithCoordinates(7,2);
+      expect(polygon.points).toContainPointWithCoordinates(7,3);
+      expect(polygon.points).toContainPointWithCoordinates(7,4);
+      expect(polygon.points).toContainPointWithCoordinates(7,5);
+      expect(polygon.points).toContainPointWithCoordinates(7,6);
+      expect(polygon.points).toContainPointWithCoordinates(7,7);
+      expect(polygon.points).toContainPointWithCoordinates(7,8);
+      expect(polygon.points).toContainPointWithCoordinates(6,7);
+      expect(polygon.points).toContainPointWithCoordinates(5,6);
+      expect(polygon.points).toContainPointWithCoordinates(4,5);
+      expect(polygon.points).toContainPointWithCoordinates(3,4);
     });
   });
   

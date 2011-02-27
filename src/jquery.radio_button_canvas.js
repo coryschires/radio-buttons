@@ -34,6 +34,35 @@
                 canvas.height = function() {
                     return Math.floor(config.height / 13.8);
                 }();
+                canvas.utilities = function() {
+                  
+                  canvas.is_a_point = function(object) {
+                    return object.hasOwnProperty('x') && object.hasOwnProperty('y');
+                  };
+                  canvas.is_a_shape = function(object) {
+                    return object.hasOwnProperty('points');
+                  };
+                  canvas.is_a_coordinate = function(object) {
+                    return $.isArray(object) && object.length === 2 && typeof object[0] === 'number' && typeof object[1] === 'number';
+                  };
+                  canvas.convert_point_to_coordinates = function(object) {
+                    if (canvas.is_a_coordinate(object)) {
+                      return object
+                    } else if (canvas.is_a_point(object)) {
+                      return object.coordinates();
+                    } else {
+                      throw "Can't covert object to coordinates. Please pass a point.";
+                    }
+                  };
+                  canvas.normalize_arguments = function(args) {
+                    var coordinates = [];
+                    $.each($.makeArray(args), function(index, arg) {
+                      coordinates.push(canvas.convert_point_to_coordinates(arg));
+                    });
+                    return coordinates;
+                  };
+                  
+                }();
                 canvas.draw = function(effect) {
                     effect(this);
                 }
@@ -97,10 +126,15 @@
                     self.is_checked = function() {
                         return cache.attr('checked') == true;
                     };
+                    self.coordinates = function() {
+                      return [self.x, self.y];
+                    };
+                    self.equals = function(another_point) {
+                      return self.x === another_point.x && self.y === another_point.y;
+                    };
                     self.move = function(x, y) {
                         return self.uncheck().neighbor(x, y);
                     };
-                    
                     self.neighbor = function(x, y) {
                         var neighbor = { x: self.x, y: self.y };
                         
@@ -136,18 +170,23 @@
                   
                   return canvas.shape.apply(this, [top, right, bottom, left])
                 };
-                canvas.shape = function() {
+                canvas.shape = function(shapes_points_or_coordinates) {
                   var self = {};
                   var args = $.makeArray(arguments);
                   self.points = [];
                   
-                  var is_point = function(value) {
-                    return value.hasOwnProperty('x');
+                  self.uncheck = function() {
+                    $.each(self.points, function(index, point) {
+                      point.uncheck();
+                    });
+                    return self;
                   };
-                  var is_shape = function(value) {
-                    return value.hasOwnProperty('points');
+                  self.check = function() {
+                    $.each(self.points, function(index, point) {
+                      point.check();
+                    });
+                    return self;
                   };
-                  
                   self.move = function(x, y) {
                     $.each(self.points, function(index, point) {
                       self.points[index] = point.move(x, y);
@@ -163,20 +202,27 @@
                     $.each(args, function(index, argument) {
                       
                       // when argument is point, add it to points array
-                      if (is_point(argument)) {
+                      // 
+                      if (canvas.is_a_point(argument)) {
                         self.points.push(argument);
                       
                       // when argument is shape, loop thru shape's points and add 
                       // each to points array
-                      } else if ( is_shape(argument) ) {
+                      // 
+                      } else if ( canvas.is_a_shape(argument) ) {
                         $.each(argument.points, function(index, point) {
                           self.points.push(point);
                         });
                       
                       // otherwise assume argument is an array of coordinates and 
                       // build new a point
-                      } else {
+                      // 
+                      } else if ( canvas.is_a_coordinate(argument) ) {
                         self.points.push(canvas.point(argument[0], argument[1]));
+                      
+                      
+                      } else {
+                        // Argument is invalid. Better error handling?
                       }
                     });
                   }();
@@ -184,12 +230,12 @@
                   return self;
                 };
                 canvas.polygon = function() {
-                  var args = $.makeArray(arguments);
                   var sides = [];
+                  var coordinates = canvas.normalize_arguments(arguments);
                   
-                  $.each(args, function(index, coordinate) {
+                  $.each(coordinates, function(index, coordinate) {
                     var start_point = coordinate;
-                    var end_point = index === (args.length -1) ? args[0] : args[index+1];
+                    var end_point = index === (coordinates.length -1) ? coordinates[0] : coordinates[index+1];
                     
                     var line = canvas.line(
                       start_point[0], start_point[1], end_point[0], end_point[1]
