@@ -71,7 +71,7 @@ When initialized, a point comes checked by default. Here are some basic methods 
     point.uncheck();        // returns self
     point.is_checked();     // returns boolean
 
-It sometimes be convenient to fetch a point's coordinates. You can do that using the <tt>coordinates</tt> function:
+It can sometimes be convenient to fetch a point's coordinates. You can do that using the <tt>coordinates</tt> function:
 
     canvas.point(3,5).coordinates();      // returns [3,5]
 
