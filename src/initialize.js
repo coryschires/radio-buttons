@@ -38,6 +38,8 @@ $(document).ready(function() {
         var self = canvas.shape.apply(this, $.makeArray(arguments));
         
         self.edges = function() {
+          var dup = self;
+          var all_edges = dup.move('north').uncheck().points;
           
         };
         
