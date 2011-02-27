@@ -37,11 +37,9 @@ $(document).ready(function() {
       var block_pile = function() {
         var self = canvas.shape.apply(this, $.makeArray(arguments));
         
-        // self.points = [];
-        
-        // self.add_points = function(block) {
-        //   self.points = canvas.shape(self.points, block).points;
-        // };
+        self.edges = function() {
+          
+        };
         
         return self;
       }
