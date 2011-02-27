@@ -75,6 +75,11 @@ It sometimes be convenient to fetch a point's coordinates. You can do that using
 
     canvas.point(3,5).coordinates();      // returns [3,5]
 
+You can also check if a point is equal to another point using the <tt>equals</tt> function:
+
+    var another_point = canvas.point(3,5);
+    canvas.point(3,5).equals(another_point);    // returns true
+
 You can find other points relative to an existing point using the <tt>neighbor</tt> function:
     
     // using ordinal coordinates
