@@ -187,6 +187,13 @@
                     });
                     return self;
                   };
+                  self.includes = function(point) {
+                    var includes = false;
+                    $.each(self.points, function(index, shape_point) {
+                      if (shape_point.equals(point)) { includes = true; }
+                    });
+                    return includes;
+                  };
                   self.move = function(x, y) {
                     $.each(self.points, function(index, point) {
                       self.points[index] = point.move(x, y);

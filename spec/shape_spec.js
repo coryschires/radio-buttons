@@ -75,6 +75,10 @@ describe("radio_button_canvas shape functions", function() {
       expect(shape.points).toContainPointWithCoordinates(3,2);
       expect(shape.points).toContainPointWithCoordinates(3,3);
     });
+    it("should return an empty array if the shape has no points", function() {
+      shape = canvas.shape();
+      expect(shape.points).toEqual([]);
+    });
   });
   
   describe("shape#uncheck()", function() {
@@ -92,6 +96,19 @@ describe("radio_button_canvas shape functions", function() {
       expect(canvas).toHaveCoordinateChecked(2,2);
       expect(canvas).toHaveCoordinateChecked(3,2);
       expect(canvas).toHaveCoordinateChecked(3,3);
+    });
+  });
+  
+  describe("shape#includes(point)", function() {
+    it("should return true if the shape includes the passed point", function() {
+      var point = canvas.point(2,2);
+      shape = canvas.shape([2,2], [3,2], [3,3]);
+      expect(shape.includes(point)).toEqual(true);
+    });
+    it("should return false if the shape does not includes the passed point", function() {
+      var point = canvas.point(10,10);
+      shape = canvas.shape([2,2], [3,2], [3,3]);
+      expect(shape.includes(point)).toEqual(false);
     });
   });
   
