@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>fun with radio buttons</title>
+
+<!-- stylesheets -->
+<style type="text/css" media="screen">
+  /* reset */
+  * { margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-size: 62.5%; font-family: Helvetica, Arial, sans-serif; background-color: #e5e5e5; overflow: hidden; }
+
+  /* header */
+  header { height: 13px; border-bottom: 1px solid gray; display: block; margin-bottom: 2px; background: #192c3a; padding: 7px 10px 10px; text-align: center; position: relative; }
+  header div { font-size: 15px; color: #999; letter-spacing: 0.5px; text-transform: uppercase; position: absolute; }
+  header div input { margin: 0 1px; }
+  header div#title { left: 10px; top: 6px; }
+  header select { margin: 0 auto; }
+  header div#credit { right: 10px; top: 6px; }
+</style>
+
+<!-- javascripts -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.radio_button_canvas.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="examples/snake.js" type="text/javascript" charset="utf-8"></script>
+<script src="examples/rain_drops.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="initialize.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+    <header>
+        <div id="title">
+            radi<input type="radio">
+            butt<input type="radio" checked>ns
+        </div>
+        
+        <select name="effect" id="effect">
+            <option value="snake">snake</option>
+            <option value="rain">rain</option>
+        </select>
+        
+        <div id="credit">
+            c<input type="radio" checked>ryschires.c<input type="radio">m
+        </div>        
+    </header>
+
+    <div id="canvas"></div>
+
+</body>
+</html>
